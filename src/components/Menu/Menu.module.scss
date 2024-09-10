@@ -1,0 +1,26 @@
+@use "../../styles/variables" as variable;
+
+.menu {
+  display: none;
+
+  @media screen and (min-width: variable.$width-md) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+  }
+}
+
+.menu__item {
+  line-height: 20px;
+}
+
+.menu__link {
+  color: variable.$color-white;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  text-align: left;
+
+}

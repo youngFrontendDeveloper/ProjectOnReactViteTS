@@ -1,0 +1,95 @@
+@use "./variables" as variable;
+
+@font-face {
+  font-family: "Jost";
+  src: url("../assets/fonts/Jost-Regular.woff2") format("woff2"),
+  url("../assets/fonts/Jost-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Jost";
+  src: url("../assets/fonts/Jost-Medium.woff2") format("woff2"),
+  url("../assets/fonts/Jost-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Jost";
+  src: url("../assets/fonts/Jost-SemiBold.woff2") format("woff2"),
+  url("../assets/fonts/Jost-SemiBold.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Jost";
+  src: url("../assets/fonts/Jost-Bold.woff2") format("woff2"),
+  url("../assets/fonts/Jost-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Jost";
+  src: url("../assets/fonts/Jost-ExtraBold.woff2") format("woff2"),
+  url("../assets/fonts/Jost-ExtraBold.woff") format("woff");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+ul, ol, li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+:root {
+  font-family: Jost, Arial, sans-serif;
+  color: variable.$color-grey-900;
+
+}
+
+.container {
+  //max-width: 1440px;
+  max-width: 1180px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+
+  @media screen and (min-width: variable.$width-md) {
+    padding-left: 60px;
+    padding-right: 60px;
+  }
+
+  @media screen and (min-width: variable.$width-lg) {
+    //padding-left: 130px;
+    //padding-right: 130px;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+.button {
+  padding: 20px 50px 20px 50px;
+  color: variable.$color-white;
+  background-color: variable.$color-orange;
+  border-radius: 4px 0 0 0;
+
+}
