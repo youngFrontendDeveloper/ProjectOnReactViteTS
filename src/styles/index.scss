@@ -61,12 +61,11 @@ a {
 
 :root {
   font-family: Jost, Arial, sans-serif;
-  color: variable.$color-grey-900;
+  color: variable.$color-gray-900;
 
 }
 
 .container {
-  //max-width: 1440px;
   max-width: 1180px;
   margin-left: auto;
   margin-right: auto;
@@ -79,17 +78,34 @@ a {
   }
 
   @media screen and (min-width: variable.$width-lg) {
-    //padding-left: 130px;
-    //padding-right: 130px;
     padding-left: 0;
     padding-right: 0;
   }
 }
 
 .button {
+  display: inline-block;
   padding: 20px 50px 20px 50px;
   color: variable.$color-white;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
+  text-align: left;
   background-color: variable.$color-orange;
   border-radius: 4px 0 0 0;
+
+  &:hover {
+    background-color: variable.$color-orange-dark;
+  }
+}
+
+.title {
+  margin-bottom: 48px;
+  color: variable.$color-gray-900;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 56px;
+  text-align: left;
 
 }

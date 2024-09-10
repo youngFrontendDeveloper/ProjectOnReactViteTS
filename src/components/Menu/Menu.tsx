@@ -8,7 +8,7 @@ export default function Menu({isHeader}: boolean) {
     return (
         <ul className={styles["menu"]}>
             <li className={styles["menu__item"]}>
-                <Link to="/" className={styles["menu__link"]}>Catalog</Link>
+                <Link to="#catalog" className={styles["menu__link"]}>Catalog</Link>
             </li>
 
             <li className={styles["menu__item"]}>

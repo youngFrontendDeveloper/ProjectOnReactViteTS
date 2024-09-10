@@ -14,7 +14,7 @@ export default function App() {
      <Header />
      <Routes>
                 <Route path="/" element={<Home/>} />
-                <Route path="/product/[id]" element={<Product/>} />
+                <Route path={`/product/[id]`} element={<Product/>} />
                 <Route path="/cart" element={<Cart/>} />
 
             </Routes>
