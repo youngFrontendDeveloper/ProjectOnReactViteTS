@@ -1,0 +1,13 @@
+@use "../../styles/variables" as variable;
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+
+  @media screen and (min-width: variable.$width-md) {
+    flex-direction: row;
+    gap: 40px;
+  }
+}
