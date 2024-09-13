@@ -4,7 +4,7 @@ import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
 import Catalog from './components/Catalog/Catalog';
 import Product from './components/Product/Product';
-import Cart from './components/Cart/Cart';
+import Cart from './components/Cart/CartPage';
 
 export default function App() {  
 

@@ -1,0 +1,20 @@
+@use "../../styles/variables" as variable;
+
+.container {
+  width: 90%;
+  max-width: 1180px;
+  margin-left: auto;
+  margin-right: auto;
+  //padding-left: 15px;
+  //padding-right: 15px;
+
+  //@media screen and (min-width: variable.$width-md) {
+  //  padding-left: 60px;
+  //  padding-right: 60px;
+  //}
+
+  //@media screen and (min-width: variable.$width-lg) {
+  //  padding-left: 0;
+  //  padding-right: 0;
+  //}
+}

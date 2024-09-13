@@ -1,18 +1,20 @@
-import React from "react"
+// import React from "react"
 import styles from "./Menu.module.scss"
 import {Link} from "react-router-dom"
 import CartIcon from "../CartIcon/CartIcon.tsx";
 
-
-export default function Menu({isHeader}: boolean) {
+interface MenuProps {
+    isHeader: boolean;
+}
+export default function Menu({isHeader}:MenuProps) {
     return (
         <ul className={styles["menu"]}>
             <li className={styles["menu__item"]}>
-                <Link to="#catalog" className={styles["menu__link"]}>Catalog</Link>
+                <Link to="/#catalog" className={styles["menu__link"]}>Catalog</Link>
             </li>
 
             <li className={styles["menu__item"]}>
-                <Link to="#FAQ" className={styles["menu__link"]}>FAQ</Link>
+                <Link to="/#faq" className={styles["menu__link"]}>FAQ</Link>
             </li>
             {
                 isHeader &&

@@ -1,26 +1,29 @@
-import './App.scss'
+import styles from './App.module.scss'
 import {Routes, Route} from 'react-router-dom';
 import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
-import Catalog from './components/Catalog/Catalog';
 import Product from './components/Product/Product';
-import Cart from './components/Cart/Cart';
+import CartPage from './components/CartPage/CartPage';
 import Home from "./components/Home/Home.tsx";
+import Catalog from "./components/Catalog/Catalog.tsx";
 
-export default function App() {  
+export default function App() {
 
-  return (
-    <>
-     <Header />
-     <Routes>
-                <Route path="/" element={<Home/>} />
-                <Route path={`/product/[id]`} element={<Product/>} />
-                <Route path="/cart" element={<Cart/>} />
+    return (
+        <>
+            <Header />
+            <main className={styles['main']}>
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/" element={<Catalog />} />
+                    <Route path='/product/:id' element={<Product />} />
+                    <Route path="/cart" element={<CartPage />} />
 
-            </Routes>
-     <Footer />
-    </>
-  )
+                </Routes>
+            </main>
+            <Footer />
+        </>
+    )
 }
 
 

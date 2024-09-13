@@ -1,0 +1,20 @@
+@use "../../styles/variables" as variable;
+
+.faq {
+  padding: 60px 0;
+  background-color: variable.$color-violet;
+
+  @media screen and (min-width: variable.$width-md) {
+    padding: 60px 30px;
+  }
+
+  @media screen and (min-width: variable.$width-lg) {
+    padding: 60px 150px;
+  }
+}
+
+.faq__title {
+  margin-bottom: 20px;
+  color: variable.$color-white;
+  text-transform: uppercase;
+}

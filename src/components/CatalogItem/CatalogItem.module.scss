@@ -20,24 +20,31 @@
   width: 100%;
   height: 300px;
   margin-bottom: 10px;
+
+  &::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: "Show details";
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    color: rgba(variable.$color-white, 0.8);
+    font-family: inherit;
+    font-size: 26px;
+    font-weight: 800;
+    line-height: 37.57px;
+    background-color: rgba(variable.$color-gray-200, 0.5);
+    opacity: 0;
+    transition: all 0.4s ease;
+  }
 }
 
 .catalog-item:hover .catalog-item__img-wrap::after {
-  position: absolute;
-  top: 0;
-  left: 0;
-  content: "Show details";
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  color: rgba(variable.$color-white, 0.8);
-  font-family: inherit;
-  font-size: 26px;
-  font-weight: 800;
-  line-height: 37.57px;
-  background-color: rgba(variable.$color-gray-200, 0.5);
+  opacity: 1 ;
+
 }
 
 .catalog-item:hover .catalog-item__title {
