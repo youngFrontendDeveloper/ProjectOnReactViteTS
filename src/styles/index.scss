@@ -77,31 +77,15 @@ a {
 
 }
 
-//.button {
-//  display: block;
-//  width: max-content;
-//  padding: 20px 50px 20px 50px;
-//  color: variable.$color-white;
-//  font-family: inherit;
-//  font-size: 16px;
-//  font-weight: 400;
-//  line-height: 22px;
-//  background-color: variable.$color-orange;
-//  border: 1px solid transparent;
-//  border-radius: 4px 0 0 0;
-//
-//  &:hover {
-//    background-color: variable.$color-orange-dark;
-//    cursor: pointer;
-//  }
-//}
-
-//.title {
-//  margin-bottom: 48px;
-//  color: variable.$color-gray-900;
-//  font-size: 36px;
-//  font-weight: 700;
-//  line-height: 56px;
-//  text-align: left;
-//
-//}
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}

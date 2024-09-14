@@ -86,15 +86,16 @@
   text-align: left;
 
 }
-
-.catalog-item__button {
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-}
+//
+//.catalog-item__button {
+//  position: absolute;
+//  bottom: 10px;
+//  right: 10px;
+//}
 
 .catalog-item__control {
   position: absolute;
   bottom: 10px;
   right: 10px;
+  background-color: variable.$color-white;
 }

@@ -1,65 +1,43 @@
-// import React, { useState } from "react";
 import styles from "./Accordion.module.scss";
-import {useState} from "react";
+import AccordionItem from "../AccordionItem/AccordionItem.tsx";
 
+const accordionItems = [
+    {
+        title: "How can I track the status of my order?",
+        content: "After placing your order, you will receive a confirmation email containing your order number and a tracking link. You can also log in to your account on our website and go to the \"My Orders\" section to track your delivery status.",
+        isOpen: true
+    },
+    {
+        title: "What payment methods do you accept?",
+        content: "After placing your order, you will receive a confirmation email containing your order number and a tracking link. You can also log in to your account on our website and go to the \"My Orders\" section to track your delivery status.",
+        isOpen: false
+    },
+    {
+        title: "How can I return or exchange an item?",
+        content: "After placing your order, you will receive a confirmation email containing your order number and a tracking link. You can also log in to your account on our website and go to the \"My Orders\" section to track your delivery status.",
+        isOpen: false
+    },
+]
 
-interface AccordionItem  {
-    title: string;
-    content: string;
-};
+export default function Accordion() {
+    // const [openPanels, setOpenPanels] = useState<boolean[]>(items.map(() => false));
 
-interface AccordionProps {
-    items: AccordionItem[];
-};
+    // console.log(openPanels)
 
-export default function Accordion({items}: AccordionProps) {
-    const [openPanels, setOpenPanels] = useState<boolean[]>(items.map(() => false));
-    console.log(openPanels)
-
-    // Функция для открытия/закрытия конкретной панели
-    const togglePanel = (index: number): void => {
-        const newOpenPanels = [...openPanels];
-        newOpenPanels[index] = !newOpenPanels[index];
-        setOpenPanels(newOpenPanels);
-    };
-
-    // // Функция для открытия всех панелей
-    // const openAllPanels = () => {
-    //     setOpenPanels(items.map(() => true));
-    // };
-    //
-    // // Функция для закрытия всех панелей
-    // const closeAllPanels = () => {
-    //     setOpenPanels(items.map(() => false));
+    // const togglePanel = (index: number): void => {
+    //     const newOpenPanels = [...openPanels];
+    //     newOpenPanels[index] = !newOpenPanels[index];
+    //     setOpenPanels(newOpenPanels);
     // };
 
     return (
         <div className={styles["accordion"]}>
 
-            {items.map((item, index) => (
-                <div className={styles["accordion__item"]} key={index}>
-                    <div className={openPanels[index] ? `${styles["accordion__header-wrap"]} ${styles["accordion__header-wrap--margin"]}` : styles["accordion__header-wrap"] } onClick={() => togglePanel(index)}>
-                        <p className={styles["accordion__header"]}>{item.title}</p>
-                        <button
-                            type="button"
-                            className={openPanels[index] ? `${styles["accordion__button"]} ${styles["accordion__button--open"]}` : styles["accordion__button"]}
-
-                            aria-label={`${openPanels[index] ? "Закрыть список" : "Раскрыть список"}`}
-                        >
-                            <img src="/images/plus-icon.svg" aria-hidden="true" />
-                        </button>
-                    </div>
-                    <p
-                        className={openPanels[index] ? `${styles["accordion__content"]} ${styles["open"]}` : `${styles["accordion__content"]}`}
-                        // style={{
-                        //     maxHeight: openPanels[index] ? "500px" : "0px",
-                        //     transition: "max-height 0.4s ease",
-                        // }}
-                    >
-                        {item.content}
-                    </p>
-                </div>
-            ))}
+            {
+                accordionItems.map((item, index) => (
+                    <AccordionItem item={item} key={`accordion-${index}`} />
+                ))
+            }
         </div>
     );
 };

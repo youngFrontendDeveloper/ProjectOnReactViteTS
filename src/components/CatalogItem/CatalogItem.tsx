@@ -34,12 +34,14 @@ export default function CatalogItem({item}: CatalogProps) {
 
                 </div>
             </Link>
-            {
-                item?.added ?
-                    <AddedControl defaultCount={1} extensionClass={styles["catalog-item__control"]} />
-                    :
-                    <ButtonAddToCart extensionClass={styles["catalog-item__button"]} />
-            }
+            <div className={styles["catalog-item__control"]}>
+                {
+                    item?.added ?
+                        <AddedControl defaultCount={1} />
+                        :
+                        <ButtonAddToCart />
+                }
+            </div>
 
 
         </li>

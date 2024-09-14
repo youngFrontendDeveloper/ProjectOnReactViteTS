@@ -1,4 +1,3 @@
-// import React from "react";
 import styles from "./Catalog.module.scss"
 import data from "../../data/data.json"
 import CatalogItem from "../CatalogItem/CatalogItem.tsx";
@@ -12,17 +11,16 @@ export default function Catalog() {
         <section className={styles["catalog"]} id="catalog">
             <ScrollToHashElement />
             <Container extensionClass={styles["catalog__container"]}>
-                <Title title="Catalog" extensionClass={styles["catalog__title"]}/>
+                <Title title="Catalog" extensionClass={styles["catalog__title"]} />
                 <input type="text" className={styles["catalog__search"]} placeholder="Search by title" />
                 <ul className={styles["catalog__list"]}>
                     {
-                        data.map(item => (
-                            <CatalogItem item={item} />
+                        data.map((item, index) => (
+                            <CatalogItem item={item} key={`catalog_${index}`} />
                         ))
                     }
                 </ul>
-                <Button text="Show more" extensionClass={styles["catalog_-button"]}/>
-                {/*<button className={`button ${styles["catalog_-button"]}`}></button>*/}
+                <Button text="Show more" extensionClass={styles["catalog_-button"]} />
             </Container>
         </section>
     )

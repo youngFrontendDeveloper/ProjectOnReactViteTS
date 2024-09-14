@@ -7,7 +7,7 @@
   width: 100%;
   max-width: 776px;
 
-  @media screen and (min-width: variable.$width-md) {
+  @media screen and (min-width: variable.$width-lg) {
     padding: 20px 40px;
     border: 1px solid variable.$color-gray-500;
     border-radius: 4px;

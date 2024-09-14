@@ -3,13 +3,22 @@
 .faq {
   padding: 60px 0;
   background-color: variable.$color-violet;
+}
+
+.faq__container {
+  margin-left: auto;
+  margin-right: auto;
 
   @media screen and (min-width: variable.$width-md) {
-    padding: 60px 30px;
+    max-width: 880px;
+    //padding-left: 100px;
+    //padding-right: 100px;
   }
 
   @media screen and (min-width: variable.$width-lg) {
-    padding: 60px 150px;
+    height: 388px;
+    //padding-left: 150px;
+    //padding-right: 150px
   }
 }
 

@@ -6,7 +6,8 @@
   align-items: center;
   flex-wrap: wrap;
   width: 100%;
-  max-width: 696px;
+  max-width: 300px;
+  height: 374px;
   padding: 12px;
   border: 1px solid variable.$color-gray-200;
   border-radius: 6px;
@@ -17,6 +18,7 @@
   }
 
   @media screen and (min-width: variable.$width-md) {
+    max-width: 696px;
     height: 124px;
   }
 }
@@ -74,7 +76,6 @@
   @media screen and (min-width: variable.$width-md) {
     flex-basis: 252px;
   }
-
 }
 
 .cart-item__price {
@@ -88,15 +89,24 @@
   @media screen and (min-width: variable.$width-md) {
     flex-basis: 252px;
   }
-
 }
 
 .cart-item__button-wrap {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
   width: 274px;
-  margin-right: 12px;
+
+  @media screen and (min-width: variable.$width-md) {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 0;
+    width: 286px;
+    margin-right: 12px;
+  }
 }
 
 .cart-item__btn-cart {
@@ -104,7 +114,6 @@
 }
 
 .cart-item__delete {
-  margin-left: 48px;
   color: variable.$color-gray-500;
   font-size: 14px;
   font-weight: 400;
@@ -117,6 +126,10 @@
   &:hover {
     color: variable.$color-gray-900;
     text-decoration: underline;
+  }
+
+  @media screen and (min-width: variable.$width-md) {
+    margin-left: 48px;
   }
 }
 

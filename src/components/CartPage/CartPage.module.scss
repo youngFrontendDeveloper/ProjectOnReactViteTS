@@ -13,10 +13,12 @@
   align-items: flex-start;
   flex-direction: column;
   gap: 10px;
+  width: 100%;
+  max-width: 356px;
 
   @media screen and (min-width: variable.$width-md) {
     flex-basis: 355px;
-    max-width: 356px;
+    width: 356px;
   }
 }
 
