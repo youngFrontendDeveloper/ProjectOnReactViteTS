@@ -8,6 +8,7 @@
     justify-content: space-between;
     align-items: center;
     gap: 40px;
+    width: 117px;
   }
 }
 
@@ -16,6 +17,7 @@
 }
 
 .menu__link {
+  display: block;
   color: variable.$color-white;
   font-family: inherit;
   font-size: 14px;

@@ -1,12 +1,16 @@
 import styles from "./CartItem.module.scss";
 import {Link} from "react-router-dom";
-import {useState} from "react";
+// import {useState} from "react";
+import AddedControl from "../AddedControl/AddedControl.tsx";
+import ButtonAddToCart from "../ButtonAddToCart/ButtonAddToCart.tsx";
 
 interface CartItem {
     "id": number,
     "src": string,
     "title": string,
-    "price": string
+    "price": string,
+    "count": number,
+    "isDeleted": boolean
 }
 
 interface CartItemProps {
@@ -14,35 +18,23 @@ interface CartItemProps {
 }
 
 export default function CartItem({item}: CartItemProps) {
-    const [isDeleted, setIsDeleted] = useState<boolean>(false);
-    const [count, setCount] = useState(1);
-    const countName = count > 1 ? "items" : "item";
-
-    const handleClickPlus = () => {
-        setCount(prevCount => prevCount + 1)
-    }
-
-    const handleClickMinus = () => {
-        if (count === 0) {
-            setCount(0)
-        } else {
-            setCount(prevCount => prevCount - 1)
-        }
-    }
-
-    const handleClickDelete = () => {
-        setIsDeleted(true);
-    }
+    // const [isDeleted, setIsDeleted] = useState<boolean>(false);
+    const isDeleted = item?.isDeleted
+    //
+    // const handleClickDelete = () => {
+    //     setIsDeleted(true);
+    // }
 
 
     return (
         <li className={isDeleted ? `${styles["cart-item"]} ${styles["cart-item--deleted"]}}` : `${styles["cart-item"]}`}>
-            {/*<div className={styles["cart-item__content"]}>*/}
+
             <div
                 className={isDeleted ? `${styles["cart-item__content"]} ${styles["deleted"]}` : `${styles["cart-item__content"]}`}
             >
                 <img
-                    src="/images/product1.jpg" alt="Изображение продукта" width={100} height={100}
+                    src="/images/cart1.jpg" alt="Изображение продукта"
+                    width={100} height={100}
                     className={styles["cart-item__img"]}
                 />
                 <div className={styles["cart-item__text-wrap"]}>
@@ -54,46 +46,16 @@ export default function CartItem({item}: CartItemProps) {
             </div>
             <div className={styles["cart-item__button-wrap"]}>
                 {
-                    !isDeleted &&
-                  <>
-                    <button
-                      type="button"
-                      onClick={handleClickMinus}
-                      className={`${styles["cart-item__btn"]} ${styles["cart-item__btn--minus"]}`}
-                      aria-label="Минус"
-                    >
-                      <img src="/images/minus-icon.svg" aria-hidden="true" width={18} height={3} />
-                    </button>
-                    <p className={styles["cart-item__count"]}>{count} {countName} </p>
-                    <button
-                      type="button"
-                      onClick={handleClickPlus}
-                      className={styles["cart-item__btn"]}
-                    >
-                      <img src="/images/plus-icon.svg" aria-hidden="true" width={18} height={18} />
-                    </button>
-                  </>
+                    !isDeleted && <AddedControl defaultCount={item?.count} />
                 }
                 {
-                    isDeleted ?
-                        <button
-                            type="button"
-                            onClick={handleClickPlus}
-                            className={`${styles["cart-item__btn"]} ${styles["cart-item__btn-cart"]}`}
-                        >
-                            <img
-                                src="/images/cart-icon.svg"
-                                aria-role="image"
-                                aria-label="Корзина"
-                                width={18}
-                                height={18}
-                            />
-                        </button>
+                    isDeleted ? <ButtonAddToCart extensionClass={styles["cart-item__btn-cart"]} />
+
                         :
                         <button
                             type="button"
                             className={styles["cart-item__delete"]}
-                            onClick={handleClickDelete}
+                            // onClick={handleClickDelete}
                         >
                             Delete
                         </button>

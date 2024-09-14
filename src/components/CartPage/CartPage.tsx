@@ -1,4 +1,3 @@
-// import React from "react";
 import styles from "./CartPage.module.scss";
 import Container from "../Container/Container.tsx";
 import Title from "../Title/Title.tsx";
@@ -25,9 +24,6 @@ export default function CartPage() {
                         <dd className={styles["cart__price-value"]}>$590</dd>
                     </div>
                 </dl>
-                {/*<p className={styles["cart__count"]}>Total count <span className={styles["cart__count"]}></span></p>*/}
-                {/*<p className={styles["cart__discount"]}></p>*/}
-                {/*<p className={styles["cart__price"]}></p>*/}
 
             </Container>
         </section>

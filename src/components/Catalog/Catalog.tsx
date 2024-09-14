@@ -11,7 +11,7 @@ export default function Catalog() {
     return (
         <section className={styles["catalog"]} id="catalog">
             <ScrollToHashElement />
-            <Container extensionClass="">
+            <Container extensionClass={styles["catalog__container"]}>
                 <Title title="Catalog" extensionClass={styles["catalog__title"]}/>
                 <input type="text" className={styles["catalog__search"]} placeholder="Search by title" />
                 <ul className={styles["catalog__list"]}>

@@ -5,10 +5,12 @@ import CartIcon from "../CartIcon/CartIcon.tsx";
 
 interface MenuProps {
     isHeader: boolean;
+    extensionClass?: string
 }
-export default function Menu({isHeader}:MenuProps) {
+
+export default function Menu({isHeader, extensionClass}: MenuProps) {
     return (
-        <ul className={styles["menu"]}>
+        <ul className={`${styles["menu"]} ${extensionClass}`}>
             <li className={styles["menu__item"]}>
                 <Link to="/#catalog" className={styles["menu__link"]}>Catalog</Link>
             </li>

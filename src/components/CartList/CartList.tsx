@@ -6,25 +6,33 @@ const cart = [
         "id": 1,
         "src": "/images/catalog.jpg",
         "title": "Essence Mascara Lash Princess",
-        "price": "$110"
+        "price": "$110",
+        "count": 1,
+        "isDeleted": false
     },
     {
         "id": 2,
         "src": "/images/catalog.jpg",
         "title": "Essence Mascara Lash Princess",
-        "price": "$110"
+        "price": "$110",
+        "count": 1,
+        "isDeleted": false
     },
     {
         "id": 3,
         "src": "/images/catalog.jpg",
         "title": "Essence Mascara Lash Princess",
-        "price": "$110"
+        "price": "$110",
+        "count": 5,
+        "isDeleted": false
     },
     {
         "id": 4,
         "src": "/images/catalog.jpg",
         "title": "Essence Mascara Lash Princess",
-        "price": "$110"
+        "price": "$110",
+        "count": 0,
+        "isDeleted": true
     },
 ]
 
