@@ -12,7 +12,7 @@ interface AccordionItemProps {
 }
 
 export default function AccordionItem({item}: AccordionItemProps) {
-    const [isActive, setIsActive] = useState(item.isOpen)
+    const [isActive, setIsActive] = useState<boolean>(item.isOpen)
 
     const togglePanel = () => {
         setIsActive(!isActive)

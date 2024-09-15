@@ -27,7 +27,9 @@ export default function CartItem({item}: CartItemProps) {
 
 
     return (
-        <li className={isDeleted ? `${styles["cart-item"]} ${styles["cart-item--deleted"]}}` : `${styles["cart-item"]}`}>
+        <li
+            className={isDeleted ? `${styles["cart-item"]} ${styles["cart-item--deleted"]}}` : `${styles["cart-item"]}`}
+        >
 
             <div
                 className={isDeleted ? `${styles["cart-item__content"]} ${styles["deleted"]}` : `${styles["cart-item__content"]}`}

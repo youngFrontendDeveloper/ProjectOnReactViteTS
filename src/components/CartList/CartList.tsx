@@ -40,7 +40,7 @@ export default function CartList() {
     return (
         <ul className={styles["cart-list"]}>
             {
-                cart.map(item => <CartItem item={item} />)
+                cart.map(item => <CartItem item={item}   key={`cart-${item.id}`}/>)
             }
         </ul>
     )

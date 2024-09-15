@@ -3,8 +3,13 @@
 .logo {
   color: variable.$color-white;
   font-family: inherit;
-  font-size: 30px;
+  font-size: 25px;
   font-weight: 700;
-  line-height: 44px;
+  line-height: 1.4;
   text-align: left;
+
+  @media screen and (min-width: variable.$width-md) {
+    font-size: 30px;
+    line-height: 44px;
+  }
 }

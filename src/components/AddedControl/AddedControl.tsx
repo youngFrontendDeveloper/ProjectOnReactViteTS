@@ -7,7 +7,7 @@ interface AddedControlProps {
 }
 
 export default function AddedControl({defaultCount, extensionClass}: AddedControlProps) {
-    const [count, setCount] = useState(defaultCount);
+    const [count, setCount] = useState<number>(defaultCount);
     const countName = count > 1 ? "items" : "item";
 
     const handleClickPlus = () => {
