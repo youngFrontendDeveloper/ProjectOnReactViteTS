@@ -30,7 +30,6 @@
     flex-basis: 520px;
     max-width: 520px;
     max-height: 600px;
-    //margin: 0;
   }
 }
 
@@ -87,11 +86,6 @@
     max-width: 620px;
     margin: 0;
   }
-
-  @media screen and (min-width: variable.$width-lg) {
-    //flex-basis: 620px;
-    //max-width: 620px;
-  }
 }
 
 .product__title {
@@ -123,7 +117,6 @@
   font-weight: 400;
   line-height: 24px;
   text-align: left;
-
 }
 
 .product__stock {
@@ -142,7 +135,6 @@
   font-weight: 400;
   line-height: 30px;
   text-align: left;
-
 }
 
 .product__other-wrap {
@@ -159,7 +151,6 @@
   font-weight: 400;
   line-height: 24px;
   text-align: left;
-
 }
 
 .product__buy {
@@ -194,9 +185,6 @@
     border: none;
     border-right: 1px solid variable.$color-gray-200;
   }
-
-  //@media screen and (min-width: variable.$width-lg) {
-  //}
 }
 
 .product__new-price {
@@ -221,7 +209,6 @@
   @media screen and (min-width: variable.$width-lg) {
     text-align: left;
   }
-
 }
 
 .product__discount {
@@ -240,5 +227,4 @@
   font-weight: 600;
   line-height: 24px;
   text-align: left;
-
 }

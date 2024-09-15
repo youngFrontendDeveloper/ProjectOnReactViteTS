@@ -35,9 +35,13 @@ export default function CartItem({item}: CartItemProps) {
                 className={isDeleted ? `${styles["cart-item__content"]} ${styles["deleted"]}` : `${styles["cart-item__content"]}`}
             >
                 <img
-                    src="/images/cart1.png" alt="Изображение продукта"
-                    width={100} height={100}
+                    src="/images/cart1.png"
+                    srcSet="/images/cart1@2x.png 2x"
+                    width={100}
+                    height={100}
+                    alt="Изображение продукта"
                     className={styles["cart-item__img"]}
+                    loading="lazy"
                 />
                 <div className={styles["cart-item__text-wrap"]}>
                     <Link to={`/product/${item.id}`} className={styles["cart-item__link"]}>

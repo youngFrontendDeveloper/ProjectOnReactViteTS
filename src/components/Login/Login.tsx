@@ -17,11 +17,9 @@ export default function Login() {
         <>
             {
                 user ?
-                    <p className={windowWidth < 768 ? `${ styles["login"]} ${ styles["login-small"]}` : `${ styles["login"]}` }>{userName}</p>
+                    <p className={windowWidth < 768 ? `${styles["login"]} ${styles["login-small"]}` : `${styles["login"]}`}>{userName}</p>
                     :
                     <Link to="/login" className={styles["login__link"]}>Login</Link>
-
-
             }
         </>
     )

@@ -8,31 +8,81 @@ export default function Product() {
         <section className={styles["product"]}>
             <Container extensionClass={styles["product__container"]}>
                 <div className={styles["product__img-wrap"]}>
-                    <img src="/images/product1.jpg" alt="Изображение товара" className={styles["product__img-main"]} />
+                    <img
+                        src="/images/product1.jpg"
+                        srcSet="/images/product1@2x.jpg 2x"
+                        alt="Изображение товара"
+                        className={styles["product__img-main"]}
+                        width={520}
+                        height={520}
+                        loading="lazy"
+                    />
                     <ul className={styles["product__img-list"]}>
-                        <li className={styles["product__img-item"]}><img
-                            src="/images/product1.jpg" alt="Изображение товара" className={styles["product__img"]}
-                        />
+                        <li className={styles["product__img-item"]}>
+                            <img
+                                src="/images/product1.jpg"
+                                srcSet="/images/product1@2x.jpg 2x"
+                                alt="Изображение товара"
+                                className={styles["product__img"]}
+                                width={70}
+                                height={70}
+                                loading="lazy"
+                            />
                         </li>
-                        <li className={styles["product__img-item"]}><img
-                            src="/images/product1.jpg" alt="Изображение товара" className={styles["product__img"]}
-                        />
+                        <li className={styles["product__img-item"]}>
+                            <img
+                                src="/images/product1.jpg"
+                                srcSet="/images/product1@2x.jpg 2x"
+                                alt="Изображение товара"
+                                className={styles["product__img"]}
+                                width={70}
+                                height={70}
+                                loading="lazy"
+                            />
                         </li>
-                        <li className={styles["product__img-item"]}><img
-                            src="/images/product1.jpg" alt="Изображение товара" className={styles["product__img"]}
-                        />
+                        <li className={styles["product__img-item"]}>
+                            <img
+                                src="/images/product1.jpg"
+                                srcSet="/images/product1@2x.jpg 2x"
+                                alt="Изображение товара"
+                                className={styles["product__img"]}
+                                width={70}
+                                height={70}
+                                loading="lazy"
+                            />
                         </li>
-                        <li className={styles["product__img-item"]}><img
-                            src="/images/product1.jpg" alt="Изображение товара" className={styles["product__img"]}
-                        />
+                        <li className={styles["product__img-item"]}>
+                            <img
+                                src="/images/product1.jpg"
+                                srcSet="/images/product1@2x.jpg 2x"
+                                alt="Изображение товара"
+                                className={styles["product__img"]}
+                                width={70}
+                                height={70}
+                                loading="lazy"
+                            />
                         </li>
-                        <li className={styles["product__img-item"]}><img
-                            src="/images/product1.jpg" alt="Изображение товара" className={styles["product__img"]}
-                        />
+                        <li className={styles["product__img-item"]}>
+                            <img
+                                src="/images/product1.jpg"
+                                srcSet="/images/product1@2x.jpg 2x"
+                                alt="Изображение товара"
+                                className={styles["product__img"]}
+                                width={70}
+                                height={70}
+                                loading="lazy"
+                            />
                         </li>
-                        <li className={styles["product__img-item"]}><img
-                            src="/images/product1.jpg" alt="Изображение товара" className={styles["product__img"]}
-                        />
+                        <li className={styles["product__img-item"]}>
+                            <img
+                                src="/images/product1.jpg"
+                                srcSet="/images/product1@2x.jpg 2x"
+                                alt="Изображение товара"
+                                className={styles["product__img"]}
+                                width={70}
+                                height={70}
+                                loading="lazy"
+                            />
                         </li>
                     </ul>
                 </div>
@@ -40,11 +90,13 @@ export default function Product() {
                     <Title title="Essence Mascara Lash Princess" extensionClass={styles["product__title"]} />
                     <div className={styles["product__meta-wrap"]}>
                         <div className={styles["product__rating"]}>
-                            <img src="/images/star-icon.svg" aria-label="star" width={20} height={20} />
-                            <img src="/images/star-icon.svg" aria-label="star" width={20} height={20} />
-                            <img src="/images/star-icon.svg" aria-label="star" width={20} height={20} />
-                            <img src="/images/star-icon.svg" aria-label="star" width={20} height={20} />
-                            <img src="/images/star-icon-gr.svg" aria-label="star" width={20} height={20} />
+                            <img src="/images/star-icon.svg" aria-label="star" width={20} height={20} loading="lazy" />
+                            <img src="/images/star-icon.svg" aria-label="star" width={20} height={20} loading="lazy" />
+                            <img src="/images/star-icon.svg" aria-label="star" width={20} height={20} loading="lazy" />
+                            <img src="/images/star-icon.svg" aria-label="star" width={20} height={20} loading="lazy" />
+                            <img
+                                src="/images/star-icon-gr.svg" aria-label="star" width={20} height={20} loading="lazy"
+                            />
                         </div>
                         <p className={styles["product__meta"]}>electronics, selfie accessories</p>
                     </div>

@@ -16,6 +16,7 @@ export default function ButtonAddToCart({extensionClass}: ButtonAddToCartProps) 
                 aria-hidden="true"
                 width={18}
                 height={18}
+                loading="lazy"
             />
         </button>
     )

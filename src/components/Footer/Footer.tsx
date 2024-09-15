@@ -8,9 +8,8 @@ export default function Footer() {
         <footer className={styles["footer"]}>
             <Container extensionClass={styles["footer__container"]}>
                 <Logo />
-                <Menu isHeader={false} extensionClass={styles["footer__menu"]}/>
+                <Menu isHeader={false} extensionClass={styles["footer__menu"]} />
             </Container>
-
         </footer>
     )
 }

@@ -6,6 +6,7 @@ import AddedControl from "../AddedControl/AddedControl.tsx";
 interface CatalogItem {
     "id": number,
     "src": string,
+    "src2x": string,
     "title": string,
     "price": string,
     "added": boolean,
@@ -22,10 +23,12 @@ export default function CatalogItem({item}: CatalogProps) {
                 <div className={styles["catalog-item__img-wrap"]}>
                     <img
                         src={item?.src}
+                        srcSet={`${item.src2x} 2x`}
                         alt={item?.title}
                         className={styles["catalog-item__img"]}
                         width={370}
                         height={300}
+                        loading="lazy"
                     />
                 </div>
                 <div className={styles["catalog-item__text-wrap"]}>

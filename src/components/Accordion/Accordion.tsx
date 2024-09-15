@@ -20,15 +20,6 @@ const accordionItems = [
 ]
 
 export default function Accordion() {
-    // const [openPanels, setOpenPanels] = useState<boolean[]>(items.map(() => false));
-
-    // console.log(openPanels)
-
-    // const togglePanel = (index: number): void => {
-    //     const newOpenPanels = [...openPanels];
-    //     newOpenPanels[index] = !newOpenPanels[index];
-    //     setOpenPanels(newOpenPanels);
-    // };
 
     return (
         <div className={styles["accordion"]}>

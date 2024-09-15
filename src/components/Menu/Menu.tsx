@@ -5,8 +5,8 @@ import CartIcon from "../CartIcon/CartIcon.tsx";
 interface MenuProps {
     isHeader: boolean;
     extensionClass?: string;
-    isMenuOpen: boolean;
-    closeMenu: () => void;
+    isMenuOpen?: boolean;
+    closeMenu?: () => void;
 }
 
 export default function Menu({isHeader, extensionClass, isMenuOpen, closeMenu}: MenuProps) {
@@ -36,7 +36,6 @@ export default function Menu({isHeader, extensionClass, isMenuOpen, closeMenu}: 
                 </Link>
               </li>
             }
-
         </ul>
     )
 }

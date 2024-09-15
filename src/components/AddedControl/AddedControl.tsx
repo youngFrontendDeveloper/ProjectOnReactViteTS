@@ -30,7 +30,13 @@ export default function AddedControl({defaultCount, extensionClass}: AddedContro
                 className={`${styles["added-control__btn"]} ${styles["added-control__btn--minus"]}`}
                 aria-label="Минус"
             >
-                <img src="/images/minus-icon.svg" aria-hidden="true" width={18} height={3} />
+                <img
+                    src="/images/minus-icon.svg"
+                    aria-hidden="true"
+                    width={18}
+                    height={3}
+                    loading="lazy"
+                />
             </button>
             <p className={styles["added-control__count"]}>{count} {countName} </p>
             <button
@@ -38,7 +44,13 @@ export default function AddedControl({defaultCount, extensionClass}: AddedContro
                 onClick={handleClickPlus}
                 className={styles["added-control__btn"]}
             >
-                <img src="/images/plus-icon.svg" aria-hidden="true" width={18} height={18} />
+                <img
+                    src="/images/plus-icon.svg"
+                    aria-hidden="true"
+                    width={18}
+                    height={18}
+                    loading="lazy"
+                />
             </button>
         </div>
     )

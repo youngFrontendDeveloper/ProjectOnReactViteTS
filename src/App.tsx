@@ -11,7 +11,6 @@ import Meta from "./components/Meta/Meta.tsx";
 
 export default function App() {
 
-
     return (
         <>
             <Header />
