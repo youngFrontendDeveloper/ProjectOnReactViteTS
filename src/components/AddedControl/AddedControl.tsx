@@ -43,6 +43,7 @@ export default function AddedControl({defaultCount, extensionClass}: AddedContro
                 type="button"
                 onClick={handleClickPlus}
                 className={styles["added-control__btn"]}
+                aria-label="Плюс"
             >
                 <img
                     src="/images/plus-icon.svg"
