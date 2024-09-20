@@ -81,6 +81,9 @@
   line-height: 20px;
   text-align: left;
   border-bottom: 1px solid transparent;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .catalog-item__price {

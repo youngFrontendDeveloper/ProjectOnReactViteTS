@@ -44,7 +44,9 @@
     justify-content: space-around;
   }
   @media screen and (min-width: variable.$width-lg) {
-    justify-content: space-between;
+    justify-content: flex-start;
+    row-gap: 20px;
+    column-gap: 35px;
   }
 }
 

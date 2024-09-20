@@ -68,3 +68,14 @@
   color: variable.$color-gray-900;
   font-weight: 700;
 }
+
+.cart__message {
+  margin-right: auto;
+  margin-left: auto;
+  color: variable.$color-gray-500;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 36px;
+  text-align: left;
+
+}

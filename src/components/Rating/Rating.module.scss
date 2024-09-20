@@ -1,0 +1,20 @@
+@use "../../styles/variables" as variable;
+
+.stars {
+  display: flex;
+  justify-content: space-between;
+  gap: 4px;
+  width: 116px;
+  height: 20px;
+}
+
+.stars__orange * {
+  fill: variable.$color-orange;
+  stroke: variable.$color-orange;
+}
+
+.stars__gray * {
+  fill: variable.$color-gray-200;
+  stroke: variable.$color-gray-200;
+}
+
