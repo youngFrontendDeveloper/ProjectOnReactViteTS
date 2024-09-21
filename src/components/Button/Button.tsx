@@ -3,7 +3,7 @@ import styles from "./Button.module.scss";
 interface ButtonProps {
     text: string;
     extensionClass?: string;
-    fn?: () => {}
+    fn?: () => void;
 }
 
 export default function Button({text, extensionClass, fn}: ButtonProps) {

@@ -4,7 +4,6 @@ import AddedControl from "../AddedControl/AddedControl.tsx";
 import ButtonAddToCart from "../ButtonAddToCart/ButtonAddToCart.tsx";
 import {ICartProduct} from "../../models/models.ts";
 import {useState} from "react";
-
 interface CartItemProps {
     item: ICartProduct
 }
@@ -12,12 +11,10 @@ interface CartItemProps {
 export default function CartItem({item}: CartItemProps) {
     const [isDeleted, setIsDeleted] = useState<boolean>(false);
     const discountPrice = ( item?.price - (item?.price * item?.discountPercentage / 100)).toFixed(2);
-    // const isDeleted = item?.isDeleted
-    //
+       
     const handleClickDelete = () => {
         setIsDeleted(true);
     }
-    console.log(item)
 
     return (
         <li
@@ -27,13 +24,11 @@ export default function CartItem({item}: CartItemProps) {
             <div
                 className={isDeleted ? `${styles["cart-item__content"]} ${styles["deleted"]}` : `${styles["cart-item__content"]}`}
             >
-                <img
-                    // src="/images/cart1.png"
-                    // srcSet="/images/cart1@2x.png 2x"
+                <img                    
                     src={item?.thumbnail}
                     width={100}
                     height={100}
-                    alt="Изображение продукта"
+                    alt={`Изображение продукта ${item?.title}`}
                     className={styles["cart-item__img"]}
                     loading="lazy"
                 />

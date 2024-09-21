@@ -1,17 +1,16 @@
 import {configureStore} from '@reduxjs/toolkit';
-import cartReducer from './features/cartSlice.ts';
-import {cartApi} from './services/cart/cartApi.ts';
 import {productsApi} from "./services/products/productsApi.ts";
+import {cartReducer} from './features/cart/cartSlice.ts';
 
 export const store = configureStore({
     reducer: {
-        cartState: cartReducer,
-        [cartApi.reducerPath]: cartApi.reducer,
+        cart: cartReducer,
         [productsApi.reducerPath]: productsApi.reducer,
     },
+    
     devTools: import.meta.env.NODE_ENV !== 'production',
     middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware().concat([cartApi.middleware, productsApi.middleware]),
+        getDefaultMiddleware().concat([productsApi.middleware]),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

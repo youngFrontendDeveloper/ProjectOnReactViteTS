@@ -1,13 +1,18 @@
-import { ICart } from "../../models/models";
-import { useGetCartQuery } from "../../redux/services/cart/cartApi";
 import styles from "./CartIcon.module.scss"
+// import { ICart } from "../../models/models";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { useEffect } from "react";
+import { fetchCart } from "../../redux/features/cart/cartSlice";
 
-// const cart = {
-//     quantity: 99
-// }
-export default function CartIcon() {
-    const {data} = useGetCartQuery();
-    const cart:ICart | undefined  = data?.carts[0];
+export default function CartIcon() {   
+    const dispatch = useAppDispatch();      
+    const {cart, status} = useAppSelector((state) => state.cart);
+ 
+    useEffect(() => {
+        if (status === 'idle') {
+          dispatch(fetchCart());
+        }
+      }, [status, dispatch]);
 
     return (
         <div className={styles["cart-icon"]} aria-label="Иконка корзины">
@@ -20,11 +25,10 @@ export default function CartIcon() {
                 loading="lazy"
             />
             {
-                cart?.totalQuantity > 0 &&
+                cart?.totalQuantity  && cart?.totalQuantity > 0 &&
                 <div title="Количество товаров в корзине" className={styles["cart-icon__quantity"]}>
                     {cart?.totalQuantity}+
-                </div>
-               
+                </div>               
             }
           </div>
     )

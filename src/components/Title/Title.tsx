@@ -1,7 +1,7 @@
 import styles from "./Title.module.scss";
 
 interface TitleProps {
-    title: string;
+    title: string | undefined;
     extensionClass?: string;
 }
 

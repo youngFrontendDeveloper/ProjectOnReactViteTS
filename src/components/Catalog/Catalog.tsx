@@ -6,26 +6,43 @@ import Container from "../Container/Container.tsx";
 import Button from "../Button/Button.tsx";
 import {useGetProductsQuery} from "../../redux/services/products/productsApi.ts";
 import {useDebounce} from "../../hooks/debounce.ts";
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import {IProduct} from "../../models/models.ts";
+import {useAppSelector} from "../../redux/hooks.ts";
 
 export default function Catalog() {
     const [searchWord, setSearchWord] = useState("")
-    const [page, setPage] = useState(1)
+    const [showButton, setShowButton] = useState(true)
+    const [skip, setSkip] = useState(0)
     const debounced = useDebounce(searchWord);
-
     const {data, isError, isLoading} = useGetProductsQuery({
         searchWord: debounced,
         limit: 12,
-        skip: 12,
-        page: page,
+        skip: skip,
     });
+    const [products, setProducts] = useState<IProduct[]>(data?.products || []);
+    const {cart} = useAppSelector(state => state.cart)
 
-    const handleChangeSearch = (e:React.ChangeEvent<HTMLInputElement>) => {
+    useEffect(() => {
+        if (data?.products) {
+            setShowButton(true)
+            setProducts((prevProducts) => [...prevProducts, ...data.products]);
+        }
+    }, [data]);
+
+    useEffect(() => {
+        if ((data?.products && data?.products.length < 12) || (data?.total && skip > data?.total)) {
+            setShowButton(false)
+        }
+    }, [skip, data])
+
+    const handleChangeSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setProducts([])
         setSearchWord(e.target.value)
     }
 
-    const handleClickProducts =()=>{
-        setPage(prev=>prev + 1)
+    const handleClickGetProducts = () => {
+        setSkip(prev => prev + 12)
     }
 
     return (
@@ -47,16 +64,23 @@ export default function Catalog() {
                 }
                 <ul className={styles["catalog__list"]}>
                     {
-                        data?.products.map((item, index) => (
-                            <CatalogItem item={item} key={`catalog_${index}`} />
+                        products?.map((product, index) => (
+                            <CatalogItem
+                                item={product}
+                                key={`catalog_${index}`}
+                                quantity={cart?.products.find(cartItem => cartItem.id === product.id)?.quantity}
+                            />
                         ))
                     }
                 </ul>
-                <Button
+                {
+                    showButton &&
+                  <Button
                     text="Show more"
                     extensionClass={styles["catalog_-button"]}
-                    fn={handleClickProducts}
-                />
+                    fn={handleClickGetProducts}
+                  />
+                }
             </Container>
         </section>
     )

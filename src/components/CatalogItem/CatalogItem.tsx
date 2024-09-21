@@ -5,15 +5,16 @@ import AddedControl from "../AddedControl/AddedControl.tsx";
 import {IProduct} from "../../models/models.ts";
 
 interface CatalogProps {
-    item: IProduct
+    item: IProduct;
+    quantity: number;
 }
 
-export default function CatalogItem({item}: CatalogProps) {
+export default function CatalogItem({item, quantity}: CatalogProps) {
     return (
         <li className={styles["catalog-item"]} key={`product-${item?.id}`}>
             <Link to={`/product/${item?.id}`} className={styles["catalog-item__link"]}>
                 <div className={styles["catalog-item__img-wrap"]}>
-                    <img                       
+                    <img
                         src={item?.thumbnail}
                         alt={item?.title}
                         className={styles["catalog-item__img"]}
@@ -30,8 +31,8 @@ export default function CatalogItem({item}: CatalogProps) {
             </Link>
             <div className={styles["catalog-item__control"]}>
                 {
-                    item?.added ?
-                        <AddedControl defaultCount={1} />
+                    quantity ?
+                        <AddedControl defaultCount={quantity} />
                         :
                         <ButtonAddToCart />
                 }

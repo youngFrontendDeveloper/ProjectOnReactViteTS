@@ -1,8 +1,8 @@
 import styles from "./Rating.module.scss"
 
-export default function Rating({rating}: { rating: number }) {
+export default function Rating({rating}: { rating: number | undefined }) {
     const stars: number[] = Array(5).fill(0);
-    const roundedRating = Math.round(rating)
+    const roundedRating = rating ? Math.round(rating) : 0
 
     return (
         <div className={styles["stars"]}>
