@@ -1,0 +1,36 @@
+@use "../../../styles/variables" as variable;
+
+.cart-icon {
+  position: relative;
+  display: flex;
+  align-content: center;
+  height: 20px;
+}
+
+.cart-icon__text {
+  margin-right: 6px;
+  color: variable.$color-white;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  text-align: left;
+}
+
+.cart-icon__quantity {
+  position: absolute;
+  bottom: -33%;
+  right: -4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 14px;
+  height: 14px;
+  color: variable.$color-white;
+  font-size: 6px;
+  font-weight: 400;
+  line-height: 8px;
+  text-align: center;
+  background-color: variable.$color-orange;
+  border-radius: 50%;
+}

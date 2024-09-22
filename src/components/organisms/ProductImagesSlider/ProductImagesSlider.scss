@@ -1,0 +1,81 @@
+@use "../../../styles/variables" as variable;
+
+.slider__img-wrap {
+  max-width: 280px;
+  margin: 0 auto;
+  overflow: hidden;
+
+  @media screen and (min-width: variable.$width-md) {
+    flex-basis: 300px;
+    max-width: 400px;
+    margin: 0;
+  }
+
+  @media screen and (min-width: variable.$width-lg) {
+    flex-basis: 520px;
+    max-width: 520px;
+    max-height: 600px;
+  }
+}
+
+.slider__img-main {
+  display: block;
+  width: 280px;
+  height: 280px;
+  margin-bottom: 8px;
+  border: 1px solid variable.$color-gray-200;
+  border-radius: 4px;
+  object-fit: contain;
+
+  @media screen and (min-width: variable.$width-md) {
+    width: 300px;
+    height: 300px;
+  }
+
+  @media screen and (min-width: variable.$width-lg) {
+    width: 520px;
+    height: 520px;
+  }
+}
+
+.slider__img-list {
+  display: flex;
+  justify-content: flex-start;
+  gap: 20px;
+  width: max-content;
+
+  @media screen and (min-width: variable.$width-lg) {
+    width: 520px;
+  }
+}
+
+.slick-slide {
+  width: 70px !important;
+  height: 70px !important;
+}
+
+.slick-slide img {
+  width: 70px !important;
+  height: 70px !important;
+}
+
+.slick-track {
+  display: flex;
+  gap: 20px;
+  margin-left: 10px;
+  overflow: hidden;
+}
+
+.slider__img-item {
+  width: 70px;
+  height: 70px;
+  text-align: center;
+  border: 1px solid variable.$color-violet;
+  border-radius: 4px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.slider__img {
+  object-fit: contain;
+}

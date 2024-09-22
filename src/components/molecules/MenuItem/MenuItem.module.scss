@@ -1,0 +1,20 @@
+@use "../../../styles/variables" as variable;
+
+.menu-item__item {
+  width: max-content;
+  line-height: 20px;
+}
+
+.menu-item__link {
+  display: block;
+  color: variable.$color-white;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  text-align: left;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
