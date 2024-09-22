@@ -9,7 +9,7 @@ export default function ButtonAddToCart({extensionClass}: ButtonAddToCartProps) 
         <button
             type="button"
             className={`${styles["btn"]} ${extensionClass}`}
-            aria-label="Корзина"
+            aria-label="Cart"
         >
             <img
                 src="/images/cart-icon.svg"

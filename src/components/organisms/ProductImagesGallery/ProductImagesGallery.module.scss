@@ -1,6 +1,6 @@
 @use "../../../styles/variables" as variable;
 
-.slider__img-wrap {
+.gallery__wrap {
   max-width: 280px;
   margin: 0 auto;
   overflow: hidden;
@@ -18,7 +18,7 @@
   }
 }
 
-.slider__img-main {
+.gallery__img-main {
   display: block;
   width: 280px;
   height: 280px;
@@ -38,35 +38,30 @@
   }
 }
 
-.slider__img-list {
-  display: flex;
-  justify-content: flex-start;
-  gap: 20px;
-  width: max-content;
+.gallery__container {
+  max-width: 100%;
+  overflow: hidden;
+  cursor: grab;
+  user-select: none;
 
   @media screen and (min-width: variable.$width-lg) {
     width: 520px;
   }
 }
 
-.slick-slide {
-  width: 70px !important;
-  height: 70px !important;
+.gallery-container:active {
+  cursor: grabbing;
 }
 
-.slick-slide img {
-  width: 70px !important;
-  height: 70px !important;
-}
-
-.slick-track {
+.gallery__img-list {
   display: flex;
+  justify-content: flex-start;
   gap: 20px;
-  margin-left: 10px;
-  overflow: hidden;
+  width: max-content;
+  transition: all 0.3s ease;
 }
 
-.slider__img-item {
+.gallery__img-item {
   width: 70px;
   height: 70px;
   text-align: center;
@@ -76,6 +71,8 @@
   cursor: pointer;
 }
 
-.slider__img {
+.gallery__img {
+  width: 100%;
+  height: 100%;
   object-fit: contain;
 }

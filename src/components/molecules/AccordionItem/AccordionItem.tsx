@@ -29,7 +29,7 @@ export default function AccordionItem({item}: AccordionItemProps) {
                 <button
                     type="button"
                     className={isActive ? `${styles["accordion-item__button"]} ${styles["accordion-item__button--open"]}` : styles["accordion-item__button"]}
-                    aria-label={`${isActive ? "Закрыть список" : "Раскрыть список"}`}
+                    aria-label={`${isActive ? "Close the list" : "Open the list"}`}
                 >
                     <img
                         src="/images/plus-icon.svg"

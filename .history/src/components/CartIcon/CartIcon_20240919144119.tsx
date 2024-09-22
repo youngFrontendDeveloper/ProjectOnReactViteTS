@@ -8,7 +8,7 @@ export default function CartIcon() {
     const cart:ICart | undefined  = data?.carts[0];
     
     return (
-        <div className={styles["cart-icon"]} aria-label="Иконка корзины">
+        <div className={styles["cart-icon"]} aria-label="Cart icon">
             <span className={styles["cart-icon__text"]}>Cart</span>
             <img
                 src="/images/cart-icon.svg"

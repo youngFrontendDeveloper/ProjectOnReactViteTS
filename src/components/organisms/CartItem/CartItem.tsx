@@ -55,7 +55,6 @@ export default function CartItem({item}: CartItemProps) {
                             Delete
                         </button>
                 }
-
             </div>
         </li>
     )

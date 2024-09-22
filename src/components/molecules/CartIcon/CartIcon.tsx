@@ -1,5 +1,4 @@
-import styles from "./CartIcon.module.scss"
-// import { ICart } from "../../models/models";
+import styles from "./CartIcon.module.scss";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks.ts";
 import { useEffect } from "react";
 import { fetchCart } from "../../../redux/features/cart/cartSlice.ts";
@@ -15,7 +14,7 @@ export default function CartIcon() {
       }, [status, dispatch]);
 
     return (
-        <div className={styles["cart-icon"]} aria-label="Иконка корзины">
+        <div className={styles["cart-icon"]} aria-label="Cart icon">
             <span className={styles["cart-icon__text"]}>Cart</span>
             <img
                 src="/images/cart-icon.svg"

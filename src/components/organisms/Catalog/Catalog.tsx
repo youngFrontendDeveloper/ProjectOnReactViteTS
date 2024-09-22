@@ -1,5 +1,4 @@
 import styles from "./Catalog.module.scss";
-import CatalogItem from "../CatalogItem/CatalogItem.tsx";
 import Title from "../../atoms/Title/Title.tsx";
 import ScrollToHashElement from "../../../utilites/ScrollToHashElement/ScrollToHashElement.tsx";
 import Container from "../../templates/Container/Container.tsx";
@@ -9,6 +8,7 @@ import {useDebounce} from "../../../hooks/debounce.ts";
 import {useEffect, useState} from "react";
 import {IProduct} from "../../../models/models.ts";
 import {useAppSelector} from "../../../redux/hooks.ts";
+import CatalogItem from "../CatalogItem/CatalogItem.tsx";
 
 export default function Catalog() {
     const [searchWord, setSearchWord] = useState("")

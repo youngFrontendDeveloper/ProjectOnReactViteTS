@@ -6,8 +6,8 @@ export default function NotFoundPage() {
         <section className={styles["not-found"]} aria-label="Page Not Found">
             <h1 className="visually-hidden">Эта страница не найдена</h1>
             <p className={styles["not-found__main"]}>404</p>
-            <p>Ой, эта страница не найдена</p>
-            <Link to="/"  className={styles["not-found__link"]}>Вернуться на главную</Link>
+            <p>Oh, this page has not been found</p>
+            <Link to="/"  className={styles["not-found__link"]}>Go back to the main page</Link>
         </section>
     )
 }

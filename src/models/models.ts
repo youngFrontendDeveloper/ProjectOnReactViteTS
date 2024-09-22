@@ -3,7 +3,6 @@ export interface ICartData {
     limit: number,
     skip: number,
     total: number,
-
 }
 
 export interface ICart {
@@ -44,7 +43,6 @@ export interface IProduct {
     discountPercentage: number,
     id: number,
     images: string[],
-    // meta        :         {createdAt: '2024-05-23T08:56:21.619Z', updatedAt: '2024-05-23T08:56:21.619Z', barcode: '9444582199406', qrCode: 'https://assets.dummyjson.com/public/qr-code.png'}
     minimumOrderQuantity: number,
     price: number,
     rating: number,

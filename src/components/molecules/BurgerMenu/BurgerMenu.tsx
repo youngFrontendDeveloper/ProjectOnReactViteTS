@@ -12,7 +12,7 @@ export default function BurgerMenu({isMenuOpen, toggleMenu}: BurgerMenuProps) {
         <button
             type="button"
             className={isMenuOpen ? `${styles["burger-menu"]} ${styles["active"]}` : `${styles["burger-menu"]}`}
-            aria-label="Кнопка меню"
+            aria-label="Menu button"
             onClick={toggleMenu}
         >
             <span className={styles["burger-menu__bar"]}></span>

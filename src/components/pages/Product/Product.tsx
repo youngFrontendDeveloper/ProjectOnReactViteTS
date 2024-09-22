@@ -7,9 +7,9 @@ import {useGetProductByIdQuery} from "../../../redux/services/products/productsA
 import Rating from "../../molecules/Rating/Rating.tsx";
 import AddedControl from "../../molecules/AddedControl/AddedControl.tsx";
 import {useAppSelector} from "../../../redux/hooks.ts";
-import ProductImagesSlider from "../../organisms/ProductImagesSlider/ProductImagesSlider.tsx";
 import Meta from "../../../utilites/Meta/Meta.tsx";
 import NotFoundPage from "../NotFoundPage/NotFoundPage.tsx";
+import ProductImagesGallery from "../../organisms/ProductImagesGallery/ProductImagesGallery.tsx";
 
 
 export default function Product() {
@@ -43,7 +43,7 @@ export default function Product() {
                 {
                     product &&
                   <>
-                    <ProductImagesSlider title={product?.title} main={product?.thumbnail} images={product?.images} />
+                    <ProductImagesGallery title={product?.title} main={product?.thumbnail} images={product?.images} />
 
                     <div className={styles["product__text-wrap"]}>
                       <Title title={product?.title} extensionClass={styles["product__title"]} />
