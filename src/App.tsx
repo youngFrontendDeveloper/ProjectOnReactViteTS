@@ -1,6 +1,6 @@
 import styles from './App.module.scss'
 import {Routes, Route} from 'react-router-dom';
-import Header from './components/organisms/Header/Header'
+import Header from './components/organisms/Header/Header';
 import Footer from './components/organisms/Footer/Footer'
 import Product from './components/pages/Product/Product';
 import CartPage from './components/pages/CartPage/CartPage';
@@ -8,6 +8,7 @@ import Home from "./components/pages/Home/Home.tsx";
 import Catalog from "./components/organisms/Catalog/Catalog.tsx";
 import NotFoundPage from "./components/pages/NotFoundPage/NotFoundPage.tsx";
 import Meta from "./utilites/Meta/Meta.tsx";
+
 
 export default function App() {
 

@@ -1,4 +1,5 @@
-import styles from "./Rating.module.scss"
+import styles from "./Rating.module.scss";
+import React from "react";
 
 export default function Rating({rating}: { rating: number | undefined }) {
     const stars: number[] = Array(5).fill(0);
