@@ -6,9 +6,11 @@ import Title from "../../atoms/Title/Title";
 import Form from "../../molecules/Form/Form";
 import Container from "../../templates/Container/Container";
 import { useLoginMutation } from "../../../redux/services/auth/authApi";
-import { useAppDispatch } from "../../../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { setUser } from "../../../redux/features/user/userSlice";
 import Loading from "../../molecules/Loading/Loading";
+import { setToken } from "../../../redux/features/auth/authSlice";
+import { Navigate, useNavigate } from "react-router-dom";
 
 
 export default function LoginPage() {
@@ -17,7 +19,13 @@ export default function LoginPage() {
   const [valueError, setValueError] = useState({ username: "", password: "" });
   const [login, {isLoading, error}] = useLoginMutation();
   const [responseError, setResponseError] = useState("");
+  const {token}=useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  if(token){
+    navigate("/", { replace: true });
+  }
   
   useEffect(()=>{
     setResponseError(error?.data?.message)
@@ -45,8 +53,9 @@ export default function LoginPage() {
 
        if (user) {
         dispatch(setUser(user));
-     
-       localStorage.setItem("token", JSON.stringify(user.accessToken));
+        dispatch(setToken(user.accessToken))        
+
+        return <Navigate to="/" state={{ from: location }} />;     
       
       }
       } catch (error) {
@@ -54,6 +63,10 @@ export default function LoginPage() {
       }
     }
   };
+
+  if (token) {
+    navigate("/", { replace: true });
+  }
 
   return (
     <section className={styles["login"]}>

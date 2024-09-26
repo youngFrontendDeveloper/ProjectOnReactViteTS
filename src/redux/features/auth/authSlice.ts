@@ -1,28 +1,32 @@
-// import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-// import { IUserInfo } from "../../../models/models";
+import { createSlice } from "@reduxjs/toolkit";
 
-// interface AuthState {
-//   loading: boolean;
-//   userInfo: IUserInfo | null;
-//   userToken: string | null;
-//   error: string | null;
-//   success: boolean;
-// }
+interface AuthState {
+  token: string | null;
+}
 
-// const initialState: AuthState = {
-//   loading: false,
-//   userInfo: null,
-//   userToken: null,
-//   error: null,
-//   success: false,
-// };
+const tokenFromLocalStorage = localStorage.getItem("token");
 
-// const authSlice = createSlice({
-//   name: "auth",
-//   initialState,
-//   reducers: {},
-//   // extraReducers: {},
-// });
+const initialState: AuthState = {
+  token: tokenFromLocalStorage || null,
+};
+
+const authSlice = createSlice({
+  name: "auth",
+  initialState,
+  reducers: {
+    setToken(state, action) {
+      state.token = action.payload;
+      localStorage.setItem("token", action.payload);
+    },
+    removeToken(state) {
+      state.token = null;
+      localStorage.removeItem("token");
+    },
+  },
+});
+
+export const { setToken, removeToken } = authSlice.actions;
+export const authReducer = authSlice.reducer;
 
 // export const fetchAuth = createAsyncThunk("auth/fetchAuth", async (data, { rejectWithValue }) => {
 //   try {

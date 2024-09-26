@@ -6,13 +6,11 @@ import { fetchCart } from "../../../redux/features/cart/cartSlice";
 export default function CartIcon() {
   const dispatch = useAppDispatch();
   const { cart, status } = useAppSelector((state) => state.cart);
-  const { user } = useAppSelector((state) => state.user); 
+  const { user } = useAppSelector((state) => state.user);
 
   useEffect(() => {
     if (status === "idle" && user?.id) {
       dispatch(fetchCart(user.id));
-      console.log("dispatched cart fetch for user:", user.id);
-      
     }
   }, [user, status, dispatch]);
 

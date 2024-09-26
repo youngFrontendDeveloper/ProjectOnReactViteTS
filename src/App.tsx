@@ -9,6 +9,7 @@ import Meta from './utilites/Meta/Meta';
 import ProductPage from './components/pages/ProductPage/ProductPage';
 import HomePage from './components/pages/HomePage/HomePage';
 import LoginPage from './components/pages/LoginPage/LoginPage';
+import ProtectedRoute from './components/templates/ProtectedRoute/ProtectedRoute';
 
 export default function App() {  
   const location = useLocation();
@@ -21,34 +22,38 @@ export default function App() {
           <Route
             path="/"
             element={
-              <>
+               <ProtectedRoute>
+                <>
                 <Meta
                   title="Catalog | Goods4you"
                   description="Any products from famous brands with worldwide delivery"
                 />
                 <HomePage />
-              </>
+                </>
+                </ProtectedRoute>
             }
           />
           <Route path="/" element={<Catalog />} />
           <Route
             path="/product/:id"
             element={
-              <>
+              <ProtectedRoute>
                 <ProductPage />
-              </>
+                </ProtectedRoute>
             }
           />
           <Route
             path="/cart"
             element={
-              <>
+              <ProtectedRoute>
+                 <>
                 <Meta
                   title="My cart | Goods4you"
                   description="Any products from famous brands with worldwide delivery"
                 />
                 <CartPage />
-              </>
+                </>
+                </ProtectedRoute>
             }
           />
            <Route
