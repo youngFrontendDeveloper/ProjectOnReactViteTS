@@ -1,13 +1,8 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { IUserInfo } from "../../../models/models";
 
-interface ILoginRequest {
-  username: string;
-  password: string;
-}
-
-export const authApi = createApi({
-  reducerPath: "authApi",
+export const userApi = createApi({
+  reducerPath: "userApi",
   baseQuery: fetchBaseQuery({
     baseUrl: import.meta.env.VITE_BASE_URL,
     prepareHeaders: (headers) => {
@@ -18,16 +13,14 @@ export const authApi = createApi({
       return headers;
     },
   }),
-  tagTypes: ["Auth"],
-  endpoints: (build) => ({
-    login: build.mutation<IUserInfo, ILoginRequest>({
-      query: (credentials) => ({
-        url: `${import.meta.env.VITE_AUTH_URL}`,
-        method: "POST",
-        body: credentials,
+  tagTypes: ["User"],
+  endpoints: (builder) => ({
+    getUser: builder.query<IUserInfo, void>({
+      query: () => ({
+        url: `${import.meta.env.VITE_USER_URL}`,
       }),
     }),
   }),
 });
 
-export const { useLoginMutation } = authApi;
+export const { useGetUserQuery } = userApi;

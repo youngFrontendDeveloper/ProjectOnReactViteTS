@@ -23,9 +23,18 @@ const initialState: CartState = {
 export const fetchCart = createAsyncThunk(
   "cart/fetchCart",
   async (id: number, { rejectWithValue }) => {
-    try {
+    try {     
+      const token = localStorage.getItem("token");
+     
       const response = await fetch(
         `${import.meta.env.VITE_BASE_URL}/${import.meta.env.VITE_CART_URL}/${id}`,
+        {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        },
       );
 
       if (!response.ok) {
