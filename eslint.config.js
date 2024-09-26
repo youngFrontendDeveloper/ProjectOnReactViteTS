@@ -65,6 +65,7 @@ export default [
   pluginReact.configs.flat.recommended,
   {
     rules: {
+      'react/react-in-jsx-scope': 0,
       '@typescript-eslint/no-unused-vars': 'off',
       '@typescript-eslint/no-unused-vars-ignore-tslint-disable': 'off',
     },

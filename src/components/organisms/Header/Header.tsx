@@ -1,8 +1,8 @@
 import styles from "./Header.module.scss"
 
-import Navigation from "../Navigation/Navigation.tsx";
-import Logo from "../../atoms/Logo/Logo.tsx";
-import Container from "../../templates/Container/Container.tsx";
+import Navigation from "../Navigation/Navigation";
+import Logo from "../../atoms/Logo/Logo";
+import Container from "../../templates/Container/Container";
 import {Link} from "react-router-dom";
 
 export default function Header() {

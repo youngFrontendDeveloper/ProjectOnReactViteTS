@@ -1,6 +1,7 @@
 import styles from "./Login.module.scss";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useAppSelector } from "../../../redux/hooks";
 
 export interface LoginProps {
     user: {
@@ -9,10 +10,11 @@ export interface LoginProps {
     windowWidth?: number;
 }
 
-export default function Login({ user, windowWidth: customWindowWidth }: LoginProps) {
+export default function Login({windowWidth: customWindowWidth }: LoginProps) {
     const [windowWidth, setWindowWidth] = useState<number>(customWindowWidth || window.innerWidth);
+    const {user}=useAppSelector((state) => state.user);
 
-    const userName = user ? (windowWidth < 768 ? user.name.slice(0, 1).toUpperCase() : user.name) : '';
+    const userName = user ? (windowWidth < 768 ? user.username.slice(0, 1).toUpperCase() : `${user.firstName} ${user.lastName}`) : '';
 
     useEffect(() => {
         if (!customWindowWidth) {

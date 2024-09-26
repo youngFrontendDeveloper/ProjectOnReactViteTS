@@ -1,7 +1,7 @@
 import styles from "./Footer.module.scss";
-import Menu from "../Menu/Menu.tsx";
-import Logo from "../../atoms/Logo/Logo.tsx";
-import Container from "../../templates/Container/Container.tsx";
+import Menu from "../Menu/Menu";
+import Logo from "../../atoms/Logo/Logo";
+import Container from "../../templates/Container/Container";
 
 export default function Footer() {
     return (

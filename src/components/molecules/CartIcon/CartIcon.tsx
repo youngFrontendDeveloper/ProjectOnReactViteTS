@@ -1,7 +1,7 @@
 import styles from "./CartIcon.module.scss";
-import { useAppDispatch, useAppSelector } from "../../../redux/hooks.ts";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { useEffect } from "react";
-import { fetchCart } from "../../../redux/features/cart/cartSlice.ts";
+import { fetchCart } from "../../../redux/features/cart/cartSlice";
 
 export default function CartIcon() {   
     const dispatch = useAppDispatch();      

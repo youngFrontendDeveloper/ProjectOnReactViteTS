@@ -1,18 +1,18 @@
-import styles from "./Product.module.scss";
+import styles from "./ProductPage.module.scss";
 import {useParams} from "react-router-dom";
-import Title from "../../atoms/Title/Title.tsx";
-import Container from "../../templates/Container/Container.tsx";
-import Button from "../../atoms/Button/Button.tsx";
-import {useGetProductByIdQuery} from "../../../redux/services/products/productsApi.ts";
-import Rating from "../../molecules/Rating/Rating.tsx";
-import AddedControl from "../../molecules/AddedControl/AddedControl.tsx";
-import {useAppSelector} from "../../../redux/hooks.ts";
-import Meta from "../../../utilites/Meta/Meta.tsx";
-import NotFoundPage from "../NotFoundPage/NotFoundPage.tsx";
-import ProductImagesGallery from "../../organisms/ProductImagesGallery/ProductImagesGallery.tsx";
+import Title from "../../atoms/Title/Title";
+import Container from "../../templates/Container/Container";
+import Button from "../../atoms/Button/Button";
+import {useGetProductByIdQuery} from "../../../redux/services/products/productsApi";
+import Rating from "../../molecules/Rating/Rating";
+import AddedControl from "../../molecules/AddedControl/AddedControl";
+import {useAppSelector} from "../../../redux/hooks";
+import Meta from "../../../utilites/Meta/Meta";
+import NotFoundPage from "../NotFoundPage/NotFoundPage";
+import ProductImagesGallery from "../../organisms/ProductImagesGallery/ProductImagesGallery";
 
 
-export default function Product() {
+export default function ProductPage() {
     const params = useParams();
     const id = params.id || "";
     const {data: product, isError, isLoading} = useGetProductByIdQuery(id);

@@ -1,68 +1,86 @@
-import styles from './App.module.scss'
-import {Routes, Route} from 'react-router-dom';
+import styles from './App.module.scss';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import Header from './components/organisms/Header/Header';
-import Footer from './components/organisms/Footer/Footer'
-import Product from './components/pages/Product/Product';
+import Footer from './components/organisms/Footer/Footer';
 import CartPage from './components/pages/CartPage/CartPage';
-import Home from "./components/pages/Home/Home.tsx";
-import Catalog from "./components/organisms/Catalog/Catalog.tsx";
-import NotFoundPage from "./components/pages/NotFoundPage/NotFoundPage.tsx";
-import Meta from "./utilites/Meta/Meta.tsx";
+import Catalog from './components/organisms/Catalog/Catalog';
+import NotFoundPage from './components/pages/NotFoundPage/NotFoundPage';
+import Meta from './utilites/Meta/Meta';
+import ProductPage from './components/pages/ProductPage/ProductPage';
+import HomePage from './components/pages/HomePage/HomePage';
+import LoginPage from './components/pages/LoginPage/LoginPage';
 
-
-export default function App() {
-
-    return (
-        <>
-            <Header />
-            <main className={styles['main']}>
-                <Routes>
-                    <Route
-                        path="/" element={
-                        <>
-                            <Meta
-                                title="Catalog | Goods4you"
-                                description="Any products from famous brands with worldwide delivery"
-                            />
-                            <Home />
-                        </>
-                    }
-                    />
-                    <Route path="/" element={<Catalog />} />
-                    <Route
-                        path='/product/:id' element={
-                        <>
-                            <Product />
-                        </>
-                    }
-                    />
-                    <Route
-                        path="/cart" element={
-                        <>
-                            <Meta
-                                title="My cart | Goods4you"
-                                description="Any products from famous brands with worldwide delivery"
-                            />
-                            <CartPage />
-                        </>
-                    }
-                    />
-                    <Route
-                        path="*" element={
-                        <>
-                            <Meta
-                                title="Not found | Goods4you"
-                                description="Any products from famous brands with worldwide delivery"
-                            />
-                            <NotFoundPage />
-                        </>
-                    }
-                    />
-                </Routes>
-            </main>
-            <Footer />
-        </>
-    )
+export default function App() {  
+  const location = useLocation();
+ 
+  return (
+    <>
+      <Header />
+      <main className={styles['main']}>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <Meta
+                  title="Catalog | Goods4you"
+                  description="Any products from famous brands with worldwide delivery"
+                />
+                <HomePage />
+              </>
+            }
+          />
+          <Route path="/" element={<Catalog />} />
+          <Route
+            path="/product/:id"
+            element={
+              <>
+                <ProductPage />
+              </>
+            }
+          />
+          <Route
+            path="/cart"
+            element={
+              <>
+                <Meta
+                  title="My cart | Goods4you"
+                  description="Any products from famous brands with worldwide delivery"
+                />
+                <CartPage />
+              </>
+            }
+          />
+           <Route
+            path="/login"
+            element={
+              <>
+                <Meta
+                  title="Sign in | Goods4you"
+                  description="Any products from famous brands with worldwide delivery"
+                />
+                <LoginPage />
+              </>
+            }
+          />
+          <Route
+            path="*"
+            element={
+              <>
+                <Meta
+                  title="Not found | Goods4you"
+                  description="Any products from famous brands with worldwide delivery"
+                />
+                <NotFoundPage />
+              </>
+            }
+          />
+        </Routes>
+      </main>
+      {
+        location.pathname !== '/login' && <Footer />
+      }
+      
+    </>
+  );
 }
-
-

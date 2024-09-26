@@ -1,6 +1,6 @@
-import Presentation from "../../molecules/Presentation/Presentation.tsx";
-import Catalog from "../../organisms/Catalog/Catalog.tsx";
-import Faq from "../../organisms/Faq/Faq.tsx";
+import Presentation from "../../molecules/Presentation/Presentation";
+import Catalog from "../../organisms/Catalog/Catalog";
+import Faq from "../../organisms/Faq/Faq";
 
 export default function Home() {
     return (

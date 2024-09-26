@@ -1,7 +1,7 @@
 import styles from "./Faq.module.scss";
-import Container from "../../templates/Container/Container.tsx";
-import Title from "../../atoms/Title/Title.tsx";
-import Accordion from "../Accordion/Accordion.tsx";
+import Container from "../../templates/Container/Container";
+import Title from "../../atoms/Title/Title";
+import Accordion from "../Accordion/Accordion";
 
 export default function Faq() {
     return (

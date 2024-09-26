@@ -1,12 +1,14 @@
 import styles from "./CartPage.module.scss";
-import Container from "../../templates/Container/Container.tsx";
-import Title from "../../atoms/Title/Title.tsx";
-import CartList from "../../organisms/CartList/CartList.tsx";
-import {useAppSelector} from "../../../redux/hooks.ts";
+import Container from "../../templates/Container/Container";
+import Title from "../../atoms/Title/Title";
+import CartList from "../../organisms/CartList/CartList";
+import {useAppSelector} from "../../../redux/hooks";
 
 
 export default function CartPage() {
     const {cart, status, error} = useAppSelector((state) => state.cart);
+    // const {user}=useAppSelector((state) => state.user);
+     
 
     return (
         <section className={styles["cart"]}>

@@ -1,6 +1,6 @@
 import styles from "./Menu.module.scss";
-import CartIcon from "../../molecules/CartIcon/CartIcon.tsx";
-import MenuItem from "../../molecules/MenuItem/MenuItem.tsx";
+import CartIcon from "../../molecules/CartIcon/CartIcon";
+import MenuItem from "../../molecules/MenuItem/MenuItem";
 
 interface MenuProps {
     isHeader: boolean;
@@ -9,7 +9,7 @@ interface MenuProps {
     closeMenu?: () => void;
 }
 
-export default function Menu({isHeader, extensionClass, isMenuOpen, closeMenu}: MenuProps) {
+export default function Menu({isHeader, extensionClass, isMenuOpen, closeMenu= () => {}}: MenuProps) {
     return (
         <ul className={isMenuOpen ? `${styles["menu"]} ${styles["menu--active"]} ${extensionClass}` : `${styles["menu"]} ${extensionClass}`}>
             <MenuItem closeMenu={closeMenu} link="/#catalog">

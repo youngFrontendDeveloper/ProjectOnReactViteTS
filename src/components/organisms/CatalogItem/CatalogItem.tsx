@@ -1,8 +1,8 @@
 import styles from "./CatalogItem.module.scss";
 import {Link} from "react-router-dom";
-import ButtonAddToCart from "../../atoms/ButtonAddToCart/ButtonAddToCart.tsx";
-import AddedControl from "../../molecules/AddedControl/AddedControl.tsx";
-import {IProduct} from "../../../models/models.ts";
+import ButtonAddToCart from "../../atoms/ButtonAddToCart/ButtonAddToCart";
+import AddedControl from "../../molecules/AddedControl/AddedControl";
+import {IProduct} from "../../../models/models";
 
 interface CatalogItemProps {
     item: IProduct;

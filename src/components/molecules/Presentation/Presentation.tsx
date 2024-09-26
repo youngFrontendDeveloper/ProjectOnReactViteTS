@@ -1,6 +1,6 @@
 import styles from "./Presentation.module.scss";
 import {Link} from "react-router-dom";
-import Container from "../../templates/Container/Container.tsx";
+import Container from "../../templates/Container/Container";
 
 export default function Presentation() {
     return (

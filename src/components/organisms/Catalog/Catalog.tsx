@@ -1,14 +1,15 @@
 import styles from "./Catalog.module.scss";
-import Title from "../../atoms/Title/Title.tsx";
-import ScrollToHashElement from "../../../utilites/ScrollToHashElement/ScrollToHashElement.tsx";
-import Container from "../../templates/Container/Container.tsx";
-import Button from "../../atoms/Button/Button.tsx";
-import {useGetProductsQuery} from "../../../redux/services/products/productsApi.ts";
-import {useDebounce} from "../../../hooks/debounce.ts";
+import Title from "../../atoms/Title/Title";
+import ScrollToHashElement from "../../../utilites/ScrollToHashElement/ScrollToHashElement";
+import Container from "../../templates/Container/Container";
+import Button from "../../atoms/Button/Button";
+import {useGetProductsQuery} from "../../../redux/services/products/productsApi";
+import {useDebounce} from "../../../hooks/debounce";
 import {useEffect, useState} from "react";
-import {IProduct} from "../../../models/models.ts";
-import {useAppSelector} from "../../../redux/hooks.ts";
-import CatalogItem from "../CatalogItem/CatalogItem.tsx";
+import {IProduct} from "../../../models/models";
+import {useAppSelector} from "../../../redux/hooks";
+import CatalogItem from "../CatalogItem/CatalogItem";
+import Input from "../../atoms/Input/Input";
 
 export default function Catalog() {
     const [searchWord, setSearchWord] = useState("")
@@ -36,7 +37,7 @@ export default function Catalog() {
         }
     }, [skip, data])
 
-    const handleChangeSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChangeSearch = (e: React.ChangeEvent<HTMLInputElement>): void => {
         setProducts([])
         setSearchWord(e.target.value)
     }
@@ -50,12 +51,17 @@ export default function Catalog() {
             <ScrollToHashElement />
             <Container extensionClass={styles["catalog__container"]}>
                 <Title title="Catalog" extensionClass={styles["catalog__title"]} />
-                <input
+                <Input 
+                    extensionClass={styles["catalog__search"]} 
+                    placeholder="Search by title"                   
+                    fn={(e)=>handleChangeSearch(e)}
+                    />
+                {/* <input
                     type="text"
                     className={styles["catalog__search"]}
                     placeholder="Search by title"
                     onChange={handleChangeSearch}
-                />
+                /> */}
                 {
                     isLoading && <p>Loading...</p>
                 }
@@ -68,7 +74,7 @@ export default function Catalog() {
                             <CatalogItem
                                 item={product}
                                 key={`catalog_${index}`}
-                                quantity={cart?.products.find(cartItem => cartItem.id === product.id)?.quantity}
+                                quantity={cart?.products.find(cartItem => cartItem.id === product.id)?.quantity ?? 0}
                             />
                         ))
                     }
@@ -77,7 +83,7 @@ export default function Catalog() {
                     showButton &&
                   <Button
                     text="Show more"
-                    extensionClass={styles["catalog_-button"]}
+                    extensionClass={styles["catalog__button"]}
                     fn={handleClickGetProducts}
                   />
                 }

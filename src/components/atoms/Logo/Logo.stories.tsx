@@ -1,6 +1,6 @@
 import {Meta, StoryFn} from "@storybook/react";
 import { BrowserRouter } from 'react-router-dom';
-import Logo from "./Logo.tsx";
+import Logo from "./Logo";
 
 export default {
     title: "Atoms/ Logo",

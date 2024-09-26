@@ -1,6 +1,6 @@
 import styles from "./CartList.module.scss"
-import CartItem from "../CartItem/CartItem.tsx";
-import {ICart} from "../../../models/models.ts";
+import CartItem from "../CartItem/CartItem";
+import {ICart} from "../../../models/models";
 
 interface CartListProps {
     cart: ICart

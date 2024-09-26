@@ -1,5 +1,5 @@
 import styles from "./Accordion.module.scss";
-import AccordionItem from "../../molecules/AccordionItem/AccordionItem.tsx";
+import AccordionItem from "../../molecules/AccordionItem/AccordionItem";
 
 const accordionItems = [
     {

@@ -1,0 +1,17 @@
+{
+  "node": true,
+  "browser": true,
+  "esversion": 6,
+  "strict": false,
+  "undef": true,
+  "unused": true,
+  "globals": {
+    "console": true,
+    "document": true,
+    "window": true
+  },
+  "ignore": [
+    "node_modules/",
+    "public/"
+  ]
+}

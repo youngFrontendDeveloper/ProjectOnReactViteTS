@@ -1,0 +1,22 @@
+@use "../../../styles/variables" as variable;
+
+.login {}
+
+.login__container {
+  padding-top: 140px;
+}
+
+.login__title {
+  margin-bottom: 48px;;
+  text-align: center;
+}
+
+.login__input, .login__btn {
+  margin-bottom: 60px;;
+}
+
+// .login__error {
+//   font-size: 14px;
+//   color: variable.$color-orange;
+// }
+

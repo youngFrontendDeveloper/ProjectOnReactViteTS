@@ -1,7 +1,7 @@
 import styles from "./Navigation.module.scss";
-import Menu from "../Menu/Menu.tsx";
-import Login from "../../molecules/Login/Login.tsx";
-import BurgerMenu from "../../molecules/BurgerMenu/BurgerMenu.tsx";
+import Menu from "../Menu/Menu";
+import Login from "../../molecules/Login/Login";
+import BurgerMenu from "../../molecules/BurgerMenu/BurgerMenu";
 import {useState} from "react";
 
 const user = {
