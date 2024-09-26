@@ -1,22 +1,27 @@
-import { useState } from "react";
+import styles from "./LoginPage.module.scss";
+import { useEffect, useState } from "react";
 import Button from "../../atoms/Button/Button";
 import Input from "../../atoms/Input/Input";
 import Title from "../../atoms/Title/Title";
 import Form from "../../molecules/Form/Form";
 import Container from "../../templates/Container/Container";
-import styles from "./LoginPage.module.scss";
 import { useLoginMutation } from "../../../redux/services/auth/authApi";
 import { useAppDispatch } from "../../../redux/hooks";
 import { setUser } from "../../../redux/features/user/userSlice";
+import Loading from "../../molecules/Loading/Loading";
+
 
 export default function LoginPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [valueError, setValueError] = useState({ username: "", password: "" });
   const [login, {isLoading, error}] = useLoginMutation();
+  const [responseError, setResponseError] = useState("");
   const dispatch = useAppDispatch();
-
-
+  
+  useEffect(()=>{
+    setResponseError(error?.data?.message)
+  },[error])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -42,7 +47,7 @@ export default function LoginPage() {
         dispatch(setUser(user));
      
        localStorage.setItem("token", JSON.stringify(user.accessToken));
-       console.log("user: ",  user);
+      
       }
       } catch (error) {
         console.log(error);
@@ -59,16 +64,20 @@ export default function LoginPage() {
             placeholder="Login"
             extensionClass={styles["login__input"]}
             err={valueError.username}
-            fn={(e) => {setUsername(e.target.value); setValueError({ ...valueError, username: "" })}}
+            fn={(e) => {setUsername(e.target.value); setValueError({ ...valueError, username: "" }); setResponseError("")}}
           />         
           <Input
             placeholder="Password"
             extensionClass={styles["login__input"]}
             err={valueError.password}
-            fn={(e) => {setPassword(e.target.value); setValueError({ ...valueError, password: "" })}}
+            fn={(e) => {setPassword(e.target.value); setValueError({ ...valueError, password: "" }); setResponseError("")}}
           />          
-          <Button text="Sign in" extensionClass={styles["login__btn"]} fn={handleSubmit} />
+          <Button  type="submit" text="Sign in" fn={handleSubmit} />
         </Form>
+        {
+          isLoading && <Loading />
+        }
+        {responseError && <p className={styles["login__error"]}>{responseError}</p>}
       </Container>
     </section>
   );

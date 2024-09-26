@@ -10,6 +10,7 @@ import {useAppSelector} from "../../../redux/hooks";
 import Meta from "../../../utilites/Meta/Meta";
 import NotFoundPage from "../NotFoundPage/NotFoundPage";
 import ProductImagesGallery from "../../organisms/ProductImagesGallery/ProductImagesGallery";
+import Loading from "../../molecules/Loading/Loading";
 
 
 export default function ProductPage() {
@@ -28,7 +29,7 @@ export default function ProductPage() {
             />
             <Container extensionClass={styles["product__container"]}>
                 {
-                    isLoading && <p>Loading...</p>
+                    isLoading && <Loading />
                 }
                 {
                     isError &&
@@ -71,7 +72,7 @@ export default function ProductPage() {
                         </p>
                           {
                               quantity ? <AddedControl defaultCount={quantity} />
-                                  : <Button text="Add to cart" />
+                                  : <Button  type="button" text="Add to cart" />
                           }
                       </div>
                     </div>

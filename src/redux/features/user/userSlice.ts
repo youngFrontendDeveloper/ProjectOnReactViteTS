@@ -3,12 +3,10 @@ import { IUserInfo } from "../../../models/models";
 
 interface UserState {
   user: IUserInfo | null;
-  // error: string | null;
 }
 
 const initialState: UserState = {
   user: null,
-  // error: null,
 };
 
 export const userSlice = createSlice({

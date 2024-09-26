@@ -6,10 +6,8 @@ import {useAppSelector} from "../../../redux/hooks";
 
 
 export default function CartPage() {
-    const {cart, status, error} = useAppSelector((state) => state.cart);
-    // const {user}=useAppSelector((state) => state.user);
+    const {cart, status, error} = useAppSelector((state) => state.cart);        
      
-
     return (
         <section className={styles["cart"]}>
             <Container extensionClass={styles["cart__container"]}>
@@ -46,6 +44,7 @@ export default function CartPage() {
                             <p className={styles["cart__message"]}>No items</p>
                     )
                 }
+                {!cart && <p className={styles["cart__message"]}>No cart</p>}
             </Container>
         </section>
     )
