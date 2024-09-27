@@ -2,20 +2,11 @@ import styles from "./CartIcon.module.scss";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { useEffect } from "react";
 import { fetchCart } from "../../../redux/features/cart/cartSlice";
-import { setUser } from "../../../redux/features/user/userSlice";
-import { useGetUserQuery } from "../../../redux/services/user/userApi";
 
 export default function CartIcon() {
   const dispatch = useAppDispatch();
   const { cart, status } = useAppSelector((state) => state.cart);
   const { user } = useAppSelector((state) => state.user);
-  const { data } = useGetUserQuery();
-
-  useEffect(() => {
-    if (!user && data) {
-        dispatch(setUser(data));
-    }    
-  }, [user, data, dispatch]);
 
   useEffect(() => {
     if (status === "idle" && user?.id) {

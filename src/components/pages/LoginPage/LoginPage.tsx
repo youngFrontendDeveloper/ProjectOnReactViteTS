@@ -12,24 +12,24 @@ import Loading from "../../molecules/Loading/Loading";
 import { setToken } from "../../../redux/features/auth/authSlice";
 import { Navigate, useNavigate } from "react-router-dom";
 
-
 export default function LoginPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [valueError, setValueError] = useState({ username: "", password: "" });
-  const [login, {isLoading, error}] = useLoginMutation();
+  const [login, { isLoading, error }] = useLoginMutation();
   const [responseError, setResponseError] = useState("");
-  const {token}=useAppSelector((state) => state.auth);
+  const { token } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const { user } = useAppSelector((state) => state.user);
 
-  if(token){
+  if (token && user) {
     navigate("/", { replace: true });
   }
-  
-  useEffect(()=>{
-    setResponseError(error?.data?.message)
-  },[error])
+
+  useEffect(() => {
+    setResponseError(error?.data?.message);
+  }, [error]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -47,26 +47,20 @@ export default function LoginPage() {
     }
 
     if (username !== "" && password !== "") {
-      
       try {
-       const user = await login({username, password}).unwrap();
+        const user = await login({ username, password }).unwrap();
 
-       if (user) {
-        dispatch(setUser(user));
-        dispatch(setToken(user.accessToken))        
+        if (user) {
+          dispatch(setUser(user));
+          dispatch(setToken(user.accessToken));
 
-        return <Navigate to="/" state={{ from: location }} />;     
-      
-      }
+          return <Navigate to="/" state={{ from: location }} />;
+        }
       } catch (error) {
         console.log(error);
       }
     }
   };
-
-  if (token) {
-    navigate("/", { replace: true });
-  }
 
   return (
     <section className={styles["login"]}>
@@ -77,19 +71,25 @@ export default function LoginPage() {
             placeholder="Login"
             extensionClass={styles["login__input"]}
             err={valueError.username}
-            fn={(e) => {setUsername(e.target.value); setValueError({ ...valueError, username: "" }); setResponseError("")}}
-          />         
+            fn={(e) => {
+              setUsername(e.target.value);
+              setValueError({ ...valueError, username: "" });
+              setResponseError("");
+            }}
+          />
           <Input
             placeholder="Password"
             extensionClass={styles["login__input"]}
             err={valueError.password}
-            fn={(e) => {setPassword(e.target.value); setValueError({ ...valueError, password: "" }); setResponseError("")}}
-          />          
-          <Button  type="submit" text="Sign in" fn={handleSubmit} />
+            fn={(e) => {
+              setPassword(e.target.value);
+              setValueError({ ...valueError, password: "" });
+              setResponseError("");
+            }}
+          />
+          <Button type="submit" text="Sign in" fn={handleSubmit} />
         </Form>
-        {
-          isLoading && <Loading />
-        }
+        {isLoading && <Loading />}
         {responseError && <p className={styles["login__error"]}>{responseError}</p>}
       </Container>
     </section>
