@@ -21,7 +21,7 @@ export default function Login() {
       : `${user.firstName} ${user.lastName}`
     : "";
 
-  //   console.log(user);
+  console.log(user);
 
   if (!user) {
     if (data) {

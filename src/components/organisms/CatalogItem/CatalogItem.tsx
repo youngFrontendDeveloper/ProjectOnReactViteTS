@@ -10,6 +10,10 @@ interface CatalogItemProps {
 }
 
 export default function CatalogItem({item, quantity}: CatalogItemProps) {
+    
+    const handleClickAddToCart=()=>{
+        dispatch()
+    }
     return (
         <li className={styles["catalog-item"]} key={`product-${item?.id}`}>
             <Link to={`/product/${item?.id}`} className={styles["catalog-item__link"]}>
@@ -34,7 +38,7 @@ export default function CatalogItem({item, quantity}: CatalogItemProps) {
                     quantity ?
                         <AddedControl defaultCount={quantity} />
                         :
-                        <ButtonAddToCart />
+                        <ButtonAddToCart fn={handleClickAddToCart}/>
                 }
             </div>
 
