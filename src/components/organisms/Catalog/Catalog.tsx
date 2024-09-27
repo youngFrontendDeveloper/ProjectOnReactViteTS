@@ -57,14 +57,10 @@ export default function Catalog() {
           placeholder="Search by title"
           fn={(e) => handleChangeSearch(e)}
         />
-        {/* <input
-                    type="text"
-                    className={styles["catalog__search"]}
-                    placeholder="Search by title"
-                    onChange={handleChangeSearch}
-                /> */}
+
         {isLoading && <Loading />}
         {isError && <p>Error...</p>}
+
         <ul className={styles["catalog__list"]}>
           {products?.map((product, index) => (
             <CatalogItem

@@ -16,11 +16,19 @@
   height: 50px;
   background-color: variable.$color-orange;
   border-color: transparent;
-  border-radius: 4px;
+  border-radius: 4px; 
 
   &:hover {
     background-color: variable.$color-orange-dark;
     cursor: pointer;
+  }
+
+  &--blocked {
+    background-color: variable.$color-orange-white;
+  }
+
+  &--blocked:hover {  
+    background-color: variable.$color-orange-white;
   }
 }
 

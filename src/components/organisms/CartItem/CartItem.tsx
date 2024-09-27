@@ -89,7 +89,11 @@ export default function CartItem({ item }: CartItemProps) {
         </div>
       </div>
       <div className={styles["cart-item__button-wrap"]}>
-        {!isDeleted && <AddedControl defaultCount={item?.quantity} />}
+        {!isDeleted && <AddedControl
+         defaultCount={item?.quantity} 
+        //  stock={item?.stock}
+         id={item?.id}
+         />}
         {isDeleted ? (
           <ButtonAddToCart
             extensionClass={styles["cart-item__btn-cart"]}
