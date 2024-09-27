@@ -26,7 +26,7 @@ export default function CartPage() {
                 </div>
                 <div className={`${styles["cart__discount"]} ${styles["cart__price-item"]}`}>
                   <dt>Price without discount</dt>
-                  <dd className={styles["cart__discount-value"]}>{cart.total}</dd>
+                  <dd className={styles["cart__discount-value"]}>{cart.total.toFixed(2)}</dd>
                 </div>
                 <div className={styles["cart__price"]}>
                   <dt>Total price</dt>

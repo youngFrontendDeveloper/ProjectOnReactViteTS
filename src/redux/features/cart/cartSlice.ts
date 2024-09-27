@@ -9,14 +9,11 @@ interface CartState {
 }
 
 interface ProductData {
-  merge: boolean;
-  userId: number;
-  products: [
-    {
-      productId: number;
-      quantity: number;
-    },
-  ];
+  cartId: number;
+  products: {
+    id: number;
+    quantity: number;
+  }[];
 }
 
 const initialState: CartState = {
@@ -33,30 +30,23 @@ const initialState: CartState = {
 
 export const fetchCart = createAsyncThunk(
   "cart/fetchCart",
-  async (data: ProductData, { rejectWithValue }) => {
+  async (id: number, { rejectWithValue }) => {
     try {
       const token = localStorage.getItem("token");
 
-      const response = await fetch(`${import.meta.env.VITE_CARTS}/add`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+      const response = await fetch(
+        `${import.meta.env.VITE_BASE_URL}/${import.meta.env.VITE_CART_URL}/${id}`,
+        {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
         },
-        body: JSON.stringify({
-          merge: false,
-          userId: data.userId,
-          products: [
-            {
-              productId: data.productId,
-              quantity: data.quantity,
-            },
-          ],
-        }),
-      });
+      );
 
       if (!response.ok) {
-        throw new Error("Could not add product to cart");
+        throw new Error("Could not fetch cart data");
       }
 
       return await response.json();
@@ -69,7 +59,6 @@ export const fetchCart = createAsyncThunk(
     }
   },
 );
-
 
 export const addProductToCart = createAsyncThunk(
   "cart/addProductToCart",
@@ -77,21 +66,15 @@ export const addProductToCart = createAsyncThunk(
     try {
       const token = localStorage.getItem("token");
 
-      const response = await fetch(`${import.meta.env.VITE_CARTS}/add`, {
-        method: "POST",
+      const response = await fetch(`${import.meta.env.VITE_CARTS}/${data.cartId}`, {
+        method: "PUT",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
           merge: false,
-          userId: data.userId,
-          products: [
-            {
-              productId: data.productId,
-              quantity: data.quantity,
-            },
-          ],
+          products: [...data.products],
         }),
       });
 
@@ -109,6 +92,45 @@ export const addProductToCart = createAsyncThunk(
     }
   },
 );
+
+// export const addProductToCart = createAsyncThunk(
+//   "cart/addProductToCart",
+//   async (data: ProductData, { rejectWithValue }) => {
+//     try {
+//       const token = localStorage.getItem("token");
+
+//       const response = await fetch(`${import.meta.env.VITE_CARTS}/add`, {
+//         method: "POST",
+//         headers: {
+//           "Content-Type": "application/json",
+//           Authorization: `Bearer ${token}`,
+//         },
+//         body: JSON.stringify({
+//           userId: data.userId,
+//           products: [...data.products],
+//           // [
+//           //   {
+//           //     productId: data.productId,
+//           //     quantity: data.quantity,
+//           //   },
+//           // ],
+//         }),
+//       });
+
+//       if (!response.ok) {
+//         throw new Error("Could not add product to cart");
+//       }
+
+//       return await response.json();
+//     } catch (err: unknown) {
+//       if (err instanceof Error) {
+//         return rejectWithValue(err.message);
+//       } else {
+//         return rejectWithValue("Something went wrong");
+//       }
+//     }
+//   },
+// );
 
 export const removeProductFromCart = createAsyncThunk(
   "cart/removeProductFromCart",
@@ -217,6 +239,5 @@ export const cartSlice = createSlice({
   },
 });
 
-export const { addProductInCart, removeProductFromCart, updateProductQuantityInCart } =
-  cartSlice.actions;
+export const { addToCart, removeFromCart, updateQuantityInCart } = cartSlice.actions;
 export const cartReducer = cartSlice.reducer;

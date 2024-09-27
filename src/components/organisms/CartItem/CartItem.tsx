@@ -4,29 +4,57 @@ import AddedControl from "../../molecules/AddedControl/AddedControl";
 import ButtonAddToCart from "../../atoms/ButtonAddToCart/ButtonAddToCart";
 import { ICartProduct } from "../../../models/models";
 import { useState } from "react";
-import { useAppDispatch } from "../../../redux/hooks";
-import { removeProductFromCart } from "../../../redux/features/cart/cartSlice";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
+import { addProductToCart, removeProductFromCart } from "../../../redux/features/cart/cartSlice";
 interface CartItemProps {
   item: ICartProduct;
 }
 
 export default function CartItem({ item }: CartItemProps) {
   const [isDeleted, setIsDeleted] = useState<boolean>(false);
+  const { cart } = useAppSelector((state) => state.cart);
   const discountPrice = (item?.price - (item?.price * item?.discountPercentage) / 100).toFixed(2);
   const dispatch = useAppDispatch();
 
   console.log(item);
 
-  const handleClickDelete = async () => {
-    try {
-      const response = await dispatch(removeProductFromCart(item.id));
-      console.log(response);
+  const handleClickAddToCart = async () => {
+    let data = {};
+    if (cart) {
+      data = {
+        cartId: cart.id,
+        products: [
+          ...cart.products,
+          {
+            id: item.id,
+            quantity: 1,
+          },
+        ],
+      };
+    }
+    const res = await dispatch(addProductToCart(data));
+    console.log(res);
 
-      if (response) {
-        setIsDeleted(true);
-      }
-    } catch (error) {
-      console.log(error);
+    if (res) {
+      setIsDeleted(false);
+    }
+  };
+
+  const handleClickDelete = async () => {
+    let data = {};
+
+    if (cart) {
+      const products = cart.products.filter((product) => product.id !== item.id);
+      data = {
+        cartId: cart.id,
+        products: [...products],
+      };
+    }
+    const res = await dispatch(addProductToCart(data));
+    console.log(res);
+
+    if (res) {
+      setIsDeleted(false);
     }
   };
 
@@ -63,7 +91,10 @@ export default function CartItem({ item }: CartItemProps) {
       <div className={styles["cart-item__button-wrap"]}>
         {!isDeleted && <AddedControl defaultCount={item?.quantity} />}
         {isDeleted ? (
-          <ButtonAddToCart extensionClass={styles["cart-item__btn-cart"]} />
+          <ButtonAddToCart
+            extensionClass={styles["cart-item__btn-cart"]}
+            fn={handleClickAddToCart}
+          />
         ) : (
           <button type="button" className={styles["cart-item__delete"]} onClick={handleClickDelete}>
             Delete
