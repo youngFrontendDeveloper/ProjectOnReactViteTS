@@ -1,6 +1,7 @@
 @use "../../../styles/variables" as variable;
 
-.cart__container {
+.cart__container { 
+  position: relative;
   display: flex;
   flex-wrap: wrap;
   gap: 48px;

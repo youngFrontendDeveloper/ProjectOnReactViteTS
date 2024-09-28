@@ -1,6 +1,7 @@
 @use "../../../styles/variables" as variable;
 
-.cart-item {
+.cart-item { 
+  position: relative; 
   display: flex;
   justify-content: center;
   align-items: center;
@@ -10,11 +11,15 @@
   min-height: 374px;
   padding: 12px;
   border: 1px solid variable.$color-gray-200;
-  border-radius: 6px;
+  border-radius: 6px;  
 
   &:hover {
     background-color: variable.$color-gray-100;
     cursor: pointer;
+  }
+
+  &--deleted {
+    border: 1px solid variable.$color-gray-100;
   }
 
   @media screen and (min-width: variable.$width-md) {

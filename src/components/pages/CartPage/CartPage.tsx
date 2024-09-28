@@ -3,6 +3,7 @@ import Container from "../../templates/Container/Container";
 import Title from "../../atoms/Title/Title";
 import CartList from "../../organisms/CartList/CartList";
 import { useAppSelector } from "../../../redux/hooks";
+import Loading from "../../molecules/Loading/Loading";
 
 export default function CartPage() {
   const { cart, status, error } = useAppSelector((state) => state.cart);
@@ -12,13 +13,12 @@ export default function CartPage() {
       <Container extensionClass={styles["cart__container"]}>
         <h1 className="visually-hidden">Страница корзины сайта Goods4you</h1>
         <Title title="My cart" extensionClass={styles["cart__title"]} />
-        {status === "loading" && <p>Loading...</p>}
-        {status === "failed" && <p>Error: {error}</p>}
+        {!cart && status === "loading" && <Loading />}
+        {!cart && status === "failed" && <p>Error: {error}</p>}
         {cart &&
           (cart?.products?.length > 0 ? (
             <>
-              <CartList cart={cart} />
-
+              <CartList carts={cart?.products} />
               <dl className={styles["cart__price-wrap"]}>
                 <div className={`${styles["cart__count"]} ${styles["cart__price-item"]}`}>
                   <dt>Total count</dt>
@@ -37,7 +37,9 @@ export default function CartPage() {
           ) : (
             <p className={styles["cart__message"]}>No items</p>
           ))}
-        {!cart && <p className={styles["cart__message"]}>No cart</p>}
+        {!cart && status !== "loading" && status !== "failed" && (
+          <p className={styles["cart__message"]}>No cart</p>
+        )}
       </Container>
     </section>
   );

@@ -1,36 +1,41 @@
-import { useDebounce } from "../../../hooks/debounce";
-import { addProductToCart } from "../../../redux/features/cart/cartSlice";
-import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import styles from "./AddedControl.module.scss";
-import { useCallback, useEffect, useState } from "react";
+import { updateProductsInCart } from "../../../redux/features/cart/cartSlice";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
+import { useEffect, useState } from "react";
+import Error from "../../atoms/Error/Error";
+import Loading from "../Loading/Loading";
 
 interface AddedControlProps {
-  stock?: number;
-  defaultCount: number;
-  extensionClass?: string;
-  fn?: (q: number) => void;
   id: number;
+  defaultCount: number;
+  stock?: number;
+  extensionClass?: string;
 }
 
 export default function AddedControl({
   defaultCount,
   extensionClass,
   stock,
-  fn,
   id,
 }: AddedControlProps) {
   const [count, setCount] = useState<number>(defaultCount);
+  const [prevCount, setPrevCount] = useState<number>(defaultCount);
+  const [responseError, setResponseError] = useState("");
   const countName = count > 1 ? "items" : "item";
-  const debouncedCount = useDebounce(count, 500); // Дебаунсим count
+  // const debouncedCount = useDebounce(count, 300);
   const { cart } = useAppSelector((state) => state.cart);
   const dispatch = useAppDispatch();
-  console.log(id);
+  const cartState = useAppSelector((state) => state.cart);
+  const isLoading = cartState.status === "loading";
+  // const error = cartState.error;
 
-  // Добавляем товар в корзину
+  // console.log(responseError);
+  // console.log(error);
+
   const updateCart = async (newCount: number) => {
     if (cart) {
-      await dispatch(
-        addProductToCart({
+      const res = await dispatch(
+        updateProductsInCart({
           cartId: cart.id,
           products: [
             ...cart.products,
@@ -41,77 +46,75 @@ export default function AddedControl({
           ],
         }),
       );
+
+      if (res && res.error) {
+        setResponseError(res.payload);
+        setCount(prevCount);
+
+        const timer = setTimeout(() => {
+          setResponseError("");
+        }, 2000);
+
+        return () => clearTimeout(timer);
+      }
+
+      setPrevCount(newCount);
     }
   };
 
-  // Используем useEffect для отслеживания debouncedCount
-  useEffect(() => {
-    if (debouncedCount !== defaultCount) {
-      updateCart(debouncedCount);
-    }
-  }, [debouncedCount]); // Вызываем только при изменении debouncedCount
+  // useEffect(() => {
+  //   if (debouncedCount !== defaultCount) {
+  //     updateCart(debouncedCount);
+  //   }
+  // }, [debouncedCount]);
 
-  // Обработчик кнопки "плюс"
   const handleClickPlus = () => {
-    if (count >= stock) {
-      setCount(stock);
+    let newCount: number = 0;
+    if (stock && count >= stock) {
+      newCount = stock;
     } else {
-      setCount((prev) => prev + 1);
+      newCount = count + 1;
     }
+    setCount(newCount);
+    updateCart(newCount);
   };
 
-  // Обработчик кнопки "минус"
   const handleClickMinus = () => {
-    if (count === 0) {
-      setCount(0);
+    let newCount: number = 0;
+    if (count === 1) {
+      newCount = 1;
     } else {
-      setCount((prevCount) => prevCount - 1);
+      newCount = count - 1;
     }
+
+    setCount(newCount);
+    updateCart(newCount);
   };
 
-  //    const handleClickPlus = async () => {
-  //     let newCount;
-  //     if (count >= stock) {
-  //       setCount(stock);
-  //     } else {
-  //       newCount = count + 1;
-  //       setCount(newCount);
-  //     }
+  // const handleClickPlus = () => {
+  //   if (count >= stock) {
+  //     setCount(stock);
+  //   } else {
+  //     setCount((prev) => prev + 1);
+  //   }
+  // };
 
-  //     if (cart) {
-  //       await dispatch(
-  //         addProductToCart({
-  //           cartId: cart.id,
-  //           products: [
-  //             ...cart.products,
-  //             {
-  //               id: id,
-  //               quantity: newCount,
-  //             },
-  //           ],
-  //         }),
-  //       );
-  //     }
-  //   };
-
-  //   const handleClickMinus = () => {
-  //     if (count === 0) {
-  //       setCount(0);
-  //     } else {
-  //       setCount((prevCount) => prevCount - 1);
-  //     }
-  //     if (fn) {
-  //       fn(count);
-  //     }
-  //   };
+  // const handleClickMinus = () => {
+  //   if (count === 1) {
+  //     setCount(1);
+  //   } else {
+  //     setCount((prevCount) => prevCount - 1);
+  //   }
+  // };
 
   return (
     <div className={`${styles["added-control"]} ${extensionClass}`}>
       <button
         type="button"
+        disabled={count === 1 || isLoading}
         onClick={handleClickMinus}
         className={
-          count === 0
+          count === 1 || isLoading
             ? `${styles["added-control__btn"]}  ${styles["added-control__btn--blocked"]}`
             : `${styles["added-control__btn"]} `
         }
@@ -124,9 +127,10 @@ export default function AddedControl({
       </p>
       <button
         type="button"
+        disabled={count === stock || isLoading}
         onClick={handleClickPlus}
         className={
-          count === stock
+          count === stock || isLoading
             ? `${styles["added-control__btn"]}  ${styles["added-control__btn--blocked"]}`
             : `${styles["added-control__btn"]} `
         }
@@ -134,6 +138,16 @@ export default function AddedControl({
       >
         <img src="/images/plus-icon.svg" aria-hidden="true" width={18} height={18} loading="lazy" />
       </button>
+      {/* {isLoading && (
+        <div className={styles["added-control__modal"]}>
+          <Loading />
+        </div>
+      )} */}
+      {responseError && (
+        // <div className={styles["added-control__modal"]}>
+        <Error responseError={responseError} />
+        // </div>
+      )}
     </div>
   );
 }

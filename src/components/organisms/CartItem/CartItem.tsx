@@ -5,18 +5,18 @@ import ButtonAddToCart from "../../atoms/ButtonAddToCart/ButtonAddToCart";
 import { ICartProduct } from "../../../models/models";
 import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
-import { addProductToCart, removeProductFromCart } from "../../../redux/features/cart/cartSlice";
+import { updateProductsInCart } from "../../../redux/features/cart/cartSlice";
 interface CartItemProps {
   item: ICartProduct;
+  getDeletedProducts?: (product: ICartProduct) => void;
+  deleted: boolean;
 }
 
-export default function CartItem({ item }: CartItemProps) {
-  const [isDeleted, setIsDeleted] = useState<boolean>(false);
+export default function CartItem({ item, getDeletedProducts, deleted }: CartItemProps) {
+  const [isDeleted, setIsDeleted] = useState(deleted);
   const { cart } = useAppSelector((state) => state.cart);
   const discountPrice = (item?.price - (item?.price * item?.discountPercentage) / 100).toFixed(2);
   const dispatch = useAppDispatch();
-
-  console.log(item);
 
   const handleClickAddToCart = async () => {
     let data = {};
@@ -27,16 +27,17 @@ export default function CartItem({ item }: CartItemProps) {
           ...cart.products,
           {
             id: item.id,
-            quantity: 1,
+            quantity: item.quantity,
           },
         ],
       };
     }
-    const res = await dispatch(addProductToCart(data));
+    const res = await dispatch(updateProductsInCart(data));
     console.log(res);
 
     if (res) {
       setIsDeleted(false);
+      getDeletedProducts(item, "addToCart");
     }
   };
 
@@ -50,11 +51,12 @@ export default function CartItem({ item }: CartItemProps) {
         products: [...products],
       };
     }
-    const res = await dispatch(addProductToCart(data));
+    const res = await dispatch(updateProductsInCart(data));
     console.log(res);
 
     if (res) {
-      setIsDeleted(false);
+      setIsDeleted(true);
+      getDeletedProducts(item, "del");
     }
   };
 
@@ -62,7 +64,7 @@ export default function CartItem({ item }: CartItemProps) {
     <li
       className={
         isDeleted
-          ? `${styles["cart-item"]} ${styles["cart-item--deleted"]}}`
+          ? `${styles["cart-item"]} ${styles["cart-item--deleted"]}`
           : `${styles["cart-item"]}`
       }
     >
@@ -89,11 +91,7 @@ export default function CartItem({ item }: CartItemProps) {
         </div>
       </div>
       <div className={styles["cart-item__button-wrap"]}>
-        {!isDeleted && <AddedControl
-         defaultCount={item?.quantity} 
-        //  stock={item?.stock}
-         id={item?.id}
-         />}
+        {!isDeleted && <AddedControl defaultCount={item?.quantity} id={item?.id} />}
         {isDeleted ? (
           <ButtonAddToCart
             extensionClass={styles["cart-item__btn-cart"]}

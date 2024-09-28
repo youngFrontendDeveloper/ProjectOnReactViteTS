@@ -10,6 +10,7 @@ interface CartState {
 
 interface ProductData {
   cartId: number;
+  totalProducts: number;
   products: {
     id: number;
     quantity: number;
@@ -60,20 +61,21 @@ export const fetchCart = createAsyncThunk(
   },
 );
 
-export const addProductToCart = createAsyncThunk(
+export const updateProductsInCart = createAsyncThunk(
   "cart/addProductToCart",
   async (data: ProductData, { rejectWithValue }) => {
     try {
       const token = localStorage.getItem("token");
 
       const response = await fetch(`${import.meta.env.VITE_CARTS}/${data.cartId}`, {
-        method: "PUT",
+        method: "PATCH",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
           merge: false,
+          totalProducts: data.totalProducts,
           products: [...data.products],
         }),
       });
@@ -93,32 +95,25 @@ export const addProductToCart = createAsyncThunk(
   },
 );
 
-// export const addProductToCart = createAsyncThunk(
-//   "cart/addProductToCart",
-//   async (data: ProductData, { rejectWithValue }) => {
+// export const removeProductFromCart = createAsyncThunk(
+//   "cart/removeProductFromCart",
+//   async (productId: number, { rejectWithValue }) => {
 //     try {
 //       const token = localStorage.getItem("token");
 
-//       const response = await fetch(`${import.meta.env.VITE_CARTS}/add`, {
-//         method: "POST",
+//       const response = await fetch(`${import.meta.env.VITE_CARTS}/${productId}`, {
+//         method: "DELETE",
 //         headers: {
 //           "Content-Type": "application/json",
 //           Authorization: `Bearer ${token}`,
 //         },
 //         body: JSON.stringify({
-//           userId: data.userId,
-//           products: [...data.products],
-//           // [
-//           //   {
-//           //     productId: data.productId,
-//           //     quantity: data.quantity,
-//           //   },
-//           // ],
+//           productId: productId,
 //         }),
 //       });
 
 //       if (!response.ok) {
-//         throw new Error("Could not add product to cart");
+//         throw new Error("Could not remove product from cart");
 //       }
 
 //       return await response.json();
@@ -132,84 +127,52 @@ export const addProductToCart = createAsyncThunk(
 //   },
 // );
 
-export const removeProductFromCart = createAsyncThunk(
-  "cart/removeProductFromCart",
-  async (productId: number, { rejectWithValue }) => {
-    try {
-      const token = localStorage.getItem("token");
+// export const updateProductQuantity = createAsyncThunk(
+//   "cart/updateProductQuantityInCart",
+//   async (data: ProductData, { rejectWithValue }) => {
+//     try {
+//       const token = localStorage.getItem("token");
 
-      const response = await fetch(`${import.meta.env.VITE_CARTS}/${productId}`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({
-          productId: productId,
-        }),
-      });
+//       const response = await fetch(`${import.meta.env.VITE_CARTS}/${data.productId}`, {
+//         method: "PATCH",
+//         headers: {
+//           "Content-Type": "application/json",
+//           Authorization: `Bearer ${token}`,
+//         },
+//         body: JSON.stringify({
+//           productId: data.productId,
+//           quantity: data.quantity,
+//         }),
+//       });
 
-      if (!response.ok) {
-        throw new Error("Could not remove product from cart");
-      }
+//       if (!response.ok) {
+//         throw new Error("Could not update product quantity in cart");
+//       }
 
-      return await response.json();
-    } catch (err: unknown) {
-      if (err instanceof Error) {
-        return rejectWithValue(err.message);
-      } else {
-        return rejectWithValue("Something went wrong");
-      }
-    }
-  },
-);
-
-export const updateProductQuantity = createAsyncThunk(
-  "cart/updateProductQuantityInCart",
-  async (data: ProductData, { rejectWithValue }) => {
-    try {
-      const token = localStorage.getItem("token");
-
-      const response = await fetch(`${import.meta.env.VITE_CARTS}/${data.productId}`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({
-          productId: data.productId,
-          quantity: data.quantity,
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error("Could not update product quantity in cart");
-      }
-
-      return await response.json();
-    } catch (err: unknown) {
-      if (err instanceof Error) {
-        return rejectWithValue(err.message);
-      } else {
-        return rejectWithValue("Something went wrong");
-      }
-    }
-  },
-);
+//       return await response.json();
+//     } catch (err: unknown) {
+//       if (err instanceof Error) {
+//         return rejectWithValue(err.message);
+//       } else {
+//         return rejectWithValue("Something went wrong");
+//       }
+//     }
+//   },
+// );
 
 export const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    addToCart: (state, action: PayloadAction<ICart>) => {
-      state.cart = action.payload;
-    },
-    removeFromCart: (state, action: PayloadAction<ICart>) => {
-      state.cart = action.payload;
-    },
-    updateQuantityInCart: (state, action: PayloadAction<ICart>) => {
-      state.cart = action.payload;
-    },
+    //   addToCart: (state, action: PayloadAction<ICart>) => {
+    //     state.cart = action.payload;
+    //   },
+    //   removeFromCart: (state, action: PayloadAction<ICart>) => {
+    //     state.cart = action.payload;
+    //   },
+    //   updateQuantityInCart: (state, action: PayloadAction<ICart>) => {
+    //     state.cart = action.payload;
+    //   },
   },
   extraReducers: (builder) => {
     builder
@@ -227,17 +190,21 @@ export const cartSlice = createSlice({
         state.status = "failed";
         state.error = action.error.message || "Something went wrong";
       })
-      .addCase(addProductToCart.fulfilled, (state, action) => {
+      .addCase(updateProductsInCart.pending, (state) => {
+        state.status = "loading";
+        state.error = null;
+      })
+      .addCase(updateProductsInCart.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.error = null;
         state.cart = action.payload;
       })
-      .addCase(removeProductFromCart.fulfilled, (state, action) => {
-        state.cart = action.payload;
-      })
-      .addCase(updateProductQuantity.fulfilled, (state, action) => {
-        state.cart = action.payload;
+      .addCase(updateProductsInCart.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message || "Something went wrong";
       });
   },
 });
 
-export const { addToCart, removeFromCart, updateQuantityInCart } = cartSlice.actions;
+// export const { addToCart, removeFromCart, updateQuantityInCart } = cartSlice.actions;
 export const cartReducer = cartSlice.reducer;

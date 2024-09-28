@@ -1,11 +1,13 @@
 import styles from "./CatalogItem.module.scss";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import ButtonAddToCart from "../../atoms/ButtonAddToCart/ButtonAddToCart";
 import AddedControl from "../../molecules/AddedControl/AddedControl";
 import { IProduct } from "../../../models/models";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
-import { addProductToCart } from "../../../redux/features/cart/cartSlice";
-import { useEffect, useState } from "react";
+import { updateProductsInCart } from "../../../redux/features/cart/cartSlice";
+import Error from "../../atoms/Error/Error";
+// import Loading from "../../molecules/Loading/Loading";
 
 interface CatalogItemProps {
   item: IProduct;
@@ -13,16 +15,13 @@ interface CatalogItemProps {
 }
 
 export default function CatalogItem({ item, quantity }: CatalogItemProps) {
-  // const { user } = useAppSelector((state) => state.user);
+  const [responseError, setResponseError] = useState("");
   const [productQuantity, setProductQuantity] = useState(quantity);
   const { cart } = useAppSelector((state) => state.cart);
   const dispatch = useAppDispatch();
-
-  console.log(productQuantity);
-
-  const getQuantity = (q: number) => {
-    setProductQuantity(q);
-  };
+  // const cartState = useAppSelector((state) => state.cart);
+  // const isLoading = cartState.status === "loading";
+  // const error = cartState.error;
 
   const handleClickAddToCart = async () => {
     setProductQuantity((prevState) => prevState + 1);
@@ -39,29 +38,17 @@ export default function CatalogItem({ item, quantity }: CatalogItemProps) {
         ],
       };
     }
-    const res = await dispatch(addProductToCart(data));
-    console.log(res);
-  };
+    const res = await dispatch(updateProductsInCart(data));
+    if (res && res.error) {
+      setResponseError(res.payload);
 
-  // useEffect(() => {
-  //   const f = async () => {
-  //     if (cart) {
-  //       await dispatch(
-  //         addProductToCart({
-  //           cartId: cart.id,
-  //           products: [
-  //             ...cart.products,
-  //             {
-  //               id: item.id,
-  //               quantity: productQuantity === 0 ? 1 : productQuantity + 1,
-  //             },
-  //           ],
-  //         }),
-  //       );
-  //     }
-  //   };
-  //   f().catch(console.error);
-  // }, [cart?.id, item.id, productQuantity, dispatch]);
+      const timer = setTimeout(() => {
+        setResponseError("");
+      }, 2000);
+
+      return () => clearTimeout(timer);
+    }
+  };
 
   return (
     <li className={styles["catalog-item"]} key={`product-${item?.id}`}>
@@ -83,16 +70,12 @@ export default function CatalogItem({ item, quantity }: CatalogItemProps) {
       </Link>
       <div className={styles["catalog-item__control"]}>
         {quantity ? (
-          <AddedControl 
-          defaultCount={quantity} 
-          stock={item?.stock} 
-          fn={getQuantity} 
-          id={item.id}
-          />
+          <AddedControl defaultCount={quantity} stock={item?.stock} id={item.id} />
         ) : (
           <ButtonAddToCart fn={handleClickAddToCart} />
         )}
       </div>
+      {responseError && <Error responseError={responseError} />}
     </li>
   );
 }

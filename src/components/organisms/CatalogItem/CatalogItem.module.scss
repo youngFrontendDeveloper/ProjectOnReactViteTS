@@ -49,7 +49,7 @@
 }
 
 .catalog-item:hover .catalog-item__img-wrap {
-  box-shadow: 0 6px 10px 0 #00000040;
+  box-shadow: 0 6px 10px 0 variable.$color-dark;
 }
 
 .catalog-item:hover .catalog-item__title {
@@ -100,4 +100,13 @@
   right: 10px;
   background-color: variable.$color-white;
   z-index: 2;
+}
+
+.catalog-item__modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 80%;
+  max-width: 300px;
+  transform: translate(-50%, -50%);
 }
