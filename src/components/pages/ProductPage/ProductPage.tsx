@@ -15,6 +15,11 @@ import Loading from "../../molecules/Loading/Loading";
 import { updateProductsInCart } from "../../../redux/features/cart/cartSlice";
 import Error from "../../atoms/Error/Error";
 
+interface ProductData {
+  cartId: number;
+  products: { id: number; quantity: number }[];
+}
+
 export default function ProductPage() {
   const [responseError, setResponseError] = useState("");
   const params = useParams();
@@ -28,7 +33,10 @@ export default function ProductPage() {
   const dispatch = useAppDispatch();
 
   const handleClickAddToCart = async () => {
-    let data = {};
+    let data: ProductData = {
+      cartId: 0,
+      products: [],
+    };
     if (cart && product) {
       data = {
         cartId: cart.id,

@@ -7,11 +7,15 @@ import { IProduct } from "../../../models/models";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { updateProductsInCart } from "../../../redux/features/cart/cartSlice";
 import Error from "../../atoms/Error/Error";
-// import Loading from "../../molecules/Loading/Loading";
 
 interface CatalogItemProps {
   item: IProduct;
   quantity: number;
+}
+
+interface ProductData {
+  cartId: number;
+  products: { id: number; quantity: number }[];
 }
 
 export default function CatalogItem({ item, quantity }: CatalogItemProps) {
@@ -19,13 +23,13 @@ export default function CatalogItem({ item, quantity }: CatalogItemProps) {
   const [productQuantity, setProductQuantity] = useState(quantity);
   const { cart } = useAppSelector((state) => state.cart);
   const dispatch = useAppDispatch();
-  // const cartState = useAppSelector((state) => state.cart);
-  // const isLoading = cartState.status === "loading";
-  // const error = cartState.error;
 
   const handleClickAddToCart = async () => {
     setProductQuantity((prevState) => prevState + 1);
-    let data = {};
+    let data: ProductData = {
+      cartId: 0,
+      products: [],
+    };
     if (cart) {
       data = {
         cartId: cart.id,

@@ -4,12 +4,12 @@ import Title from "../../atoms/Title/Title";
 import Accordion from "../Accordion/Accordion";
 
 export default function Faq() {
-    return (
-        <section className={styles["faq"]} id="faq">
-            <Container extensionClass={styles["faq__container"]}>
-                <Title title="Faq" extensionClass={styles["faq__title"]} />
-                <Accordion />
-            </Container>
-        </section>
-    )
+  return (
+    <section className={styles["faq"]} id="faq">
+      <Container extensionClass={styles["faq__container"]}>
+        <Title title="Faq" extensionClass={styles["faq__title"]} />
+        <Accordion />
+      </Container>
+    </section>
+  );
 }

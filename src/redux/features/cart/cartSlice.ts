@@ -1,16 +1,16 @@
-import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { ICart, ICartData } from "../../../models/models";
 
-interface CartState {
+export interface CartState {
   data?: ICartData | undefined;
   cart: ICart | null;
   status: "idle" | "loading" | "succeeded" | "failed";
   error: string | null;
 }
 
-interface ProductData {
+export interface ProductData {
   cartId: number;
-  totalProducts: number;
+  totalProducts?: number;
   products: {
     id: number;
     quantity: number;
@@ -95,85 +95,10 @@ export const updateProductsInCart = createAsyncThunk(
   },
 );
 
-// export const removeProductFromCart = createAsyncThunk(
-//   "cart/removeProductFromCart",
-//   async (productId: number, { rejectWithValue }) => {
-//     try {
-//       const token = localStorage.getItem("token");
-
-//       const response = await fetch(`${import.meta.env.VITE_CARTS}/${productId}`, {
-//         method: "DELETE",
-//         headers: {
-//           "Content-Type": "application/json",
-//           Authorization: `Bearer ${token}`,
-//         },
-//         body: JSON.stringify({
-//           productId: productId,
-//         }),
-//       });
-
-//       if (!response.ok) {
-//         throw new Error("Could not remove product from cart");
-//       }
-
-//       return await response.json();
-//     } catch (err: unknown) {
-//       if (err instanceof Error) {
-//         return rejectWithValue(err.message);
-//       } else {
-//         return rejectWithValue("Something went wrong");
-//       }
-//     }
-//   },
-// );
-
-// export const updateProductQuantity = createAsyncThunk(
-//   "cart/updateProductQuantityInCart",
-//   async (data: ProductData, { rejectWithValue }) => {
-//     try {
-//       const token = localStorage.getItem("token");
-
-//       const response = await fetch(`${import.meta.env.VITE_CARTS}/${data.productId}`, {
-//         method: "PATCH",
-//         headers: {
-//           "Content-Type": "application/json",
-//           Authorization: `Bearer ${token}`,
-//         },
-//         body: JSON.stringify({
-//           productId: data.productId,
-//           quantity: data.quantity,
-//         }),
-//       });
-
-//       if (!response.ok) {
-//         throw new Error("Could not update product quantity in cart");
-//       }
-
-//       return await response.json();
-//     } catch (err: unknown) {
-//       if (err instanceof Error) {
-//         return rejectWithValue(err.message);
-//       } else {
-//         return rejectWithValue("Something went wrong");
-//       }
-//     }
-//   },
-// );
-
 export const cartSlice = createSlice({
   name: "cart",
   initialState,
-  reducers: {
-    //   addToCart: (state, action: PayloadAction<ICart>) => {
-    //     state.cart = action.payload;
-    //   },
-    //   removeFromCart: (state, action: PayloadAction<ICart>) => {
-    //     state.cart = action.payload;
-    //   },
-    //   updateQuantityInCart: (state, action: PayloadAction<ICart>) => {
-    //     state.cart = action.payload;
-    //   },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchCart.pending, (state) => {
@@ -206,5 +131,4 @@ export const cartSlice = createSlice({
   },
 });
 
-// export const { addToCart, removeFromCart, updateQuantityInCart } = cartSlice.actions;
 export const cartReducer = cartSlice.reducer;

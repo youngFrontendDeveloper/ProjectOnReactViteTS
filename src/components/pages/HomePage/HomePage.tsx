@@ -4,12 +4,12 @@ import Catalog from "../../organisms/Catalog/Catalog";
 import Faq from "../../organisms/Faq/Faq";
 
 export default function Home() {
-    return (
-        <section className={styles["home"]} >
-            <h1 className="visually-hidden">Главная страница сайта Goods4you</h1>
-            <Presentation />
-            <Catalog />
-            <Faq />
-        </section>
-    )
+  return (
+    <section className={styles["home"]}>
+      <h1 className="visually-hidden">Главная страница сайта Goods4you</h1>
+      <Presentation />
+      <Catalog />
+      <Faq />
+    </section>
+  );
 }

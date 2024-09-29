@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { IUserInfo } from "../../../models/models";
 
-interface ILoginRequest {
+export interface ILoginRequest {
   username: string;
   password: string;
 }

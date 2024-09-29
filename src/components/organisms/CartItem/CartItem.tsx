@@ -6,10 +6,16 @@ import { ICartProduct } from "../../../models/models";
 import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { updateProductsInCart } from "../../../redux/features/cart/cartSlice";
+
 interface CartItemProps {
   item: ICartProduct;
-  getDeletedProducts?: (product: ICartProduct) => void;
+  getDeletedProducts?: (product: ICartProduct, command: string) => void;
   deleted: boolean;
+}
+
+interface ProductData {
+  cartId: number;
+  products: { id: number; quantity: number }[];
 }
 
 export default function CartItem({ item, getDeletedProducts, deleted }: CartItemProps) {
@@ -19,7 +25,11 @@ export default function CartItem({ item, getDeletedProducts, deleted }: CartItem
   const dispatch = useAppDispatch();
 
   const handleClickAddToCart = async () => {
-    let data = {};
+    let data: ProductData = {
+      cartId: 0,
+      products: [],
+    };
+
     if (cart) {
       data = {
         cartId: cart.id,
@@ -33,16 +43,18 @@ export default function CartItem({ item, getDeletedProducts, deleted }: CartItem
       };
     }
     const res = await dispatch(updateProductsInCart(data));
-    console.log(res);
 
     if (res) {
       setIsDeleted(false);
-      getDeletedProducts(item, "addToCart");
+      getDeletedProducts?.(item, "addToCart");
     }
   };
 
   const handleClickDelete = async () => {
-    let data = {};
+    let data: ProductData = {
+      cartId: 0,
+      products: [],
+    };
 
     if (cart) {
       const products = cart.products.filter((product) => product.id !== item.id);
@@ -52,11 +64,10 @@ export default function CartItem({ item, getDeletedProducts, deleted }: CartItem
       };
     }
     const res = await dispatch(updateProductsInCart(data));
-    console.log(res);
 
     if (res) {
       setIsDeleted(true);
-      getDeletedProducts(item, "del");
+      getDeletedProducts?.(item, "del");
     }
   };
 

@@ -5,9 +5,9 @@ import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { useGetUserQuery } from "../../../redux/services/user/userApi";
 import { setUser } from "../../../redux/features/user/userSlice";
 
-// export interface LoginProps {
-//   windowWidth?: number;
-// }
+export interface LoginProps {
+  windowWidth?: number;
+}
 
 export default function Login() {
   const [windowWidth, setWindowWidth] = useState<number>(window.innerWidth);

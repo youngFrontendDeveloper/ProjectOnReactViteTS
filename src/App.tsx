@@ -1,36 +1,36 @@
-import styles from './App.module.scss';
-import { Routes, Route, useLocation } from 'react-router-dom';
-import Header from './components/organisms/Header/Header';
-import Footer from './components/organisms/Footer/Footer';
-import CartPage from './components/pages/CartPage/CartPage';
-import Catalog from './components/organisms/Catalog/Catalog';
-import NotFoundPage from './components/pages/NotFoundPage/NotFoundPage';
-import Meta from './utilites/Meta/Meta';
-import ProductPage from './components/pages/ProductPage/ProductPage';
-import HomePage from './components/pages/HomePage/HomePage';
-import LoginPage from './components/pages/LoginPage/LoginPage';
-import ProtectedRoute from './components/templates/ProtectedRoute/ProtectedRoute';
+import styles from "./App.module.scss";
+import { Routes, Route, useLocation } from "react-router-dom";
+import Header from "./components/organisms/Header/Header";
+import Footer from "./components/organisms/Footer/Footer";
+import CartPage from "./components/pages/CartPage/CartPage";
+import Catalog from "./components/organisms/Catalog/Catalog";
+import NotFoundPage from "./components/pages/NotFoundPage/NotFoundPage";
+import Meta from "./utilites/Meta/Meta";
+import ProductPage from "./components/pages/ProductPage/ProductPage";
+import HomePage from "./components/pages/HomePage/HomePage";
+import LoginPage from "./components/pages/LoginPage/LoginPage";
+import ProtectedRoute from "./components/templates/ProtectedRoute/ProtectedRoute";
 
-export default function App() {  
+export default function App() {
   const location = useLocation();
- 
+
   return (
     <>
       <Header />
-      <main className={styles['main']}>
+      <main className={styles["main"]}>
         <Routes>
           <Route
             path="/"
             element={
-               <ProtectedRoute>
+              <ProtectedRoute>
                 <>
-                <Meta
-                  title="Catalog | Goods4you"
-                  description="Any products from famous brands with worldwide delivery"
-                />
-                <HomePage />
+                  <Meta
+                    title="Catalog | Goods4you"
+                    description="Any products from famous brands with worldwide delivery"
+                  />
+                  <HomePage />
                 </>
-                </ProtectedRoute>
+              </ProtectedRoute>
             }
           />
           <Route path="/" element={<Catalog />} />
@@ -39,24 +39,24 @@ export default function App() {
             element={
               <ProtectedRoute>
                 <ProductPage />
-                </ProtectedRoute>
+              </ProtectedRoute>
             }
           />
           <Route
             path="/cart"
             element={
               <ProtectedRoute>
-                 <>
-                <Meta
-                  title="My cart | Goods4you"
-                  description="Any products from famous brands with worldwide delivery"
-                />
-                <CartPage />
+                <>
+                  <Meta
+                    title="My cart | Goods4you"
+                    description="Any products from famous brands with worldwide delivery"
+                  />
+                  <CartPage />
                 </>
-                </ProtectedRoute>
+              </ProtectedRoute>
             }
           />
-           <Route
+          <Route
             path="/login"
             element={
               <>
@@ -82,10 +82,7 @@ export default function App() {
           />
         </Routes>
       </main>
-      {
-        location.pathname !== '/login' && <Footer />
-      }
-      
+      {location.pathname !== "/login" && <Footer />}
     </>
   );
 }
