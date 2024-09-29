@@ -1,0 +1,14 @@
+@use "../../../styles/variables" as variable;
+
+.header {
+  flex-grow: 0;
+  width: 100%;
+  background-color: variable.$color-violet;
+}
+
+.header__container {
+  display: flex;
+  height: 90px;
+  justify-content: space-between;
+  align-items: center;
+}

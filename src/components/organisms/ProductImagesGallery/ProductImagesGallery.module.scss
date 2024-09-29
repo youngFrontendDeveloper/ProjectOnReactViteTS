@@ -1,0 +1,78 @@
+@use "../../../styles/variables" as variable;
+
+.gallery__wrap {
+  max-width: 280px;
+  margin: 0 auto;
+  overflow: hidden;
+
+  @media screen and (min-width: variable.$width-md) {
+    flex-basis: 300px;
+    max-width: 400px;
+    margin: 0;
+  }
+
+  @media screen and (min-width: variable.$width-lg) {
+    flex-basis: 520px;
+    max-width: 520px;
+    max-height: 600px;
+  }
+}
+
+.gallery__img-main {
+  display: block;
+  width: 280px;
+  height: 280px;
+  margin-bottom: 8px;
+  border: 1px solid variable.$color-gray-200;
+  border-radius: 4px;
+  object-fit: contain;
+
+  @media screen and (min-width: variable.$width-md) {
+    width: 300px;
+    height: 300px;
+  }
+
+  @media screen and (min-width: variable.$width-lg) {
+    width: 520px;
+    height: 520px;
+  }
+}
+
+.gallery__container {
+  max-width: 100%;
+  overflow: hidden;
+  cursor: grab;
+  user-select: none;
+
+  @media screen and (min-width: variable.$width-lg) {
+    width: 520px;
+  }
+}
+
+.gallery-container:active {
+  cursor: grabbing;
+}
+
+.gallery__img-list {
+  display: flex;
+  justify-content: flex-start;
+  gap: 20px;
+  width: max-content;
+  transition: all 0.3s ease;
+}
+
+.gallery__img-item {
+  width: 70px;
+  height: 70px;
+  text-align: center;
+  border: 1px solid variable.$color-violet;
+  border-radius: 4px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.gallery__img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}

@@ -1,0 +1,28 @@
+@use "../../../styles/variables" as variable;
+
+.menu {
+  display: none;
+
+  &--active {
+    position: absolute;
+    top: 20px;
+    right: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    width: 100%;
+    max-width: 290px;
+    background-color: variable.$color-violet;
+    border: 1px solid variable.$color-white;
+    border-radius: 6px;
+    z-index: 15;
+  }
+
+  @media screen and (min-width: variable.$width-md) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+  }
+}

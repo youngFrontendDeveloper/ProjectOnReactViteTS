@@ -1,13 +1,13 @@
 import styles from './App.module.scss'
 import {Routes, Route} from 'react-router-dom';
-import Header from './components/Header/Header'
-import Footer from './components/Footer/Footer'
-import Product from './components/Product/Product';
-import CartPage from './components/CartPage/CartPage';
-import Home from "./components/Home/Home.tsx";
-import Catalog from "./components/Catalog/Catalog.tsx";
-import NotFoundPage from "./components/NotFoundPage/NotFoundPage.tsx";
-import Meta from "./components/Meta/Meta.tsx";
+import Header from './components/organisms/Header/Header'
+import Footer from './components/organisms/Footer/Footer'
+import Product from './components/pages/Product/Product';
+import CartPage from './components/pages/CartPage/CartPage';
+import Home from "./components/pages/Home/Home.tsx";
+import Catalog from "./components/organisms/Catalog/Catalog.tsx";
+import NotFoundPage from "./components/pages/NotFoundPage/NotFoundPage.tsx";
+import Meta from "./utilites/Meta/Meta.tsx";
 
 export default function App() {
 
@@ -31,10 +31,6 @@ export default function App() {
                     <Route
                         path='/product/:id' element={
                         <>
-                            <Meta
-                                title="Essence Mascara Lash Princess | Goods4you"
-                                description="Any products from famous brands with worldwide delivery"
-                            />
                             <Product />
                         </>
                     }
