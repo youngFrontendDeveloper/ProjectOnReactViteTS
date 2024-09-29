@@ -1,6 +1,5 @@
 @use "../../styles/variables" as variable;
 
-
 .cart-icon {
   position: relative;
   display: flex;
@@ -20,8 +19,8 @@
 
 .cart-icon__quantity {
   position: absolute;
-  bottom: -40%;
-  right: -3px;
+  bottom: -33%;
+  right: -4px;
   display: flex;
   justify-content: center;
   align-items: center;

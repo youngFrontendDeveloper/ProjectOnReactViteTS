@@ -2,12 +2,15 @@
 
 .nav {
   display: flex;
-  flex-direction: column;
+  flex-direction: row-reverse;
+  justify-content: flex-start;
   align-items: center;
-  gap: 30px;
+  gap: 20px;
+  width: 343px;
 
   @media screen and (min-width: variable.$width-md) {
     flex-direction: row;
+    justify-content: flex-start;
     gap: 40px;
   }
 }

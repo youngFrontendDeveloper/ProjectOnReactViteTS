@@ -1,4 +1,3 @@
-import React from "react"
 import styles from "./CartIcon.module.scss"
 
 const cart = {
@@ -6,9 +5,15 @@ const cart = {
 }
 export default function CartIcon() {
     return (
-        <div className={styles["cart-icon"]}>
+        <div className={styles["cart-icon"]} aria-label="Иконка корзины">
             <span className={styles["cart-icon__text"]}>Cart</span>
-            <img src="./images/cart-icon.svg" alt="Иконка корзины" />
+            <img
+                src="/images/cart-icon.svg"
+                aria-hidden="true"
+                width={20}
+                height={20}
+                loading="lazy"
+            />
             <div title="Количество товаров в корзине" className={styles["cart-icon__quantity"]}>{cart?.quantity}+</div>
         </div>
     )

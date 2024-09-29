@@ -1,0 +1,16 @@
+@use "../../styles/variables" as variable;
+
+.title {
+  width: 100%;
+  color: variable.$color-gray-900;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 44px;
+  text-align: left;
+
+  @media screen and (min-width: variable.$width-md) {
+    font-size: 36px;
+    line-height: 56px;
+  }
+}
+

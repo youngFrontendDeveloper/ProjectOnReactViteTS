@@ -51,6 +51,15 @@
   box-sizing: border-box;
 }
 
+html {
+  height: 100%;
+  overflow-y: scroll;
+}
+
+body {
+  height: 100%;
+}
+
 ul, ol, li {
   list-style: none;
 }
@@ -59,37 +68,24 @@ a {
   text-decoration: none;
 }
 
-:root {
+.root {
+  display: flex; // Прижимаем футер к низу страницы
+  flex-direction: column;
+  height: 100%;
   font-family: Jost, Arial, sans-serif;
-  color: variable.$color-grey-900;
+  color: variable.$color-gray-900;
 
 }
 
-.container {
-  //max-width: 1440px;
-  max-width: 1180px;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 15px;
-  padding-right: 15px;
-
-  @media screen and (min-width: variable.$width-md) {
-    padding-left: 60px;
-    padding-right: 60px;
-  }
-
-  @media screen and (min-width: variable.$width-lg) {
-    //padding-left: 130px;
-    //padding-right: 130px;
-    padding-left: 0;
-    padding-right: 0;
-  }
-}
-
-.button {
-  padding: 20px 50px 20px 50px;
-  color: variable.$color-white;
-  background-color: variable.$color-orange;
-  border-radius: 4px 0 0 0;
-
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
 }
