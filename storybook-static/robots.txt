@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+Disallow: *preload$
+Disallow: *loading.svg$
+Disallow: *undefined$
+
+
+

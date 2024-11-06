@@ -6,7 +6,7 @@ import Faq from "../../organisms/Faq/Faq";
 export default function Home() {
   return (
     <section className={styles["home"]}>
-      <h1 className="visually-hidden">Главная страница сайта Goods4you</h1>
+      <h1 className="visually-hidden">Goods4you website Home Page</h1>
       <Presentation />
       <Catalog />
       <Faq />

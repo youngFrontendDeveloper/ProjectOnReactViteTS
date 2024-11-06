@@ -11,7 +11,7 @@ export default function CartPage() {
   return (
     <section className={styles["cart"]}>
       <Container extensionClass={styles["cart__container"]}>
-        <h1 className="visually-hidden">Страница корзины сайта Goods4you</h1>
+        <h1 className="visually-hidden">Goods4you Shopping Cart page</h1>
         <Title title="My cart" extensionClass={styles["cart__title"]} />
         {!cart && status === "loading" && <Loading />}
         {!cart && status === "failed" && <p>Error: {error}</p>}

@@ -16,18 +16,18 @@ export default function Login() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const userName = user
-    ? windowWidth < 768
+    ? windowWidth && windowWidth < 768
       ? user.username.slice(0, 1).toUpperCase()
       : `${user.firstName} ${user.lastName}`
     : "";
 
-  if (!user) {
-    if (data) {
+  useEffect(() => {
+    if (!user && data) {
       dispatch(setUser(data));
-    } else if (error && error.data.message == "Token Expired!") {
+    } else if (error && error.data.message === "Token Expired!") {
       navigate("/login", { replace: true });
     }
-  }
+  }, [user, data, error, dispatch, navigate]);
 
   useEffect(() => {
     const handleResize = () => setWindowWidth(window.innerWidth);

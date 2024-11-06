@@ -9,7 +9,7 @@ export default function Header() {
     <header className={styles["header"]}>
       <Container extensionClass={styles["header__container"]}>
         <Link to="/#catalog" className="visually-hidden">
-          Перейти к основному контенту
+          Go to the main content
         </Link>
         <Logo />
         <Navigation />

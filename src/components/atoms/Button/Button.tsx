@@ -8,6 +8,7 @@ interface ButtonProps {
 }
 
 export default function Button({ type, text, extensionClass, fn }: ButtonProps) {
+
   return (
     <button type={type} className={`${styles["button"]} ${extensionClass}`} onClick={fn}>
       {text}

@@ -1,17 +1,18 @@
 import styles from "./Input.module.scss";
 
 interface InputProps {
+  type: string,
   placeholder: string;
   extensionClass?: string;
   err?: string;
   fn?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export default function Input({ placeholder, extensionClass, err, fn }: InputProps) {
+export default function Input({ type, placeholder, extensionClass, err, fn }: InputProps) {
   return (
     <div className={extensionClass}>
       <input
-        type="text"
+        type={type}
         className={`${styles["input"]} `}
         placeholder={placeholder}
         onChange={fn}

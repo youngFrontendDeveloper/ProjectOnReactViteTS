@@ -68,6 +68,7 @@ export default function LoginPage() {
         <Title title="Sign in" extensionClass={styles["login__title"]} />
         <Form>
           <Input
+            type="text"
             placeholder="Login"
             extensionClass={styles["login__input"]}
             err={valueError.username}
@@ -78,6 +79,7 @@ export default function LoginPage() {
             }}
           />
           <Input
+            type="password"
             placeholder="Password"
             extensionClass={styles["login__input"]}
             err={valueError.password}

@@ -25,7 +25,7 @@ export default function AddedControl({
   const { cart } = useAppSelector((state) => state.cart);
   const dispatch = useAppDispatch();
   const cartState = useAppSelector((state) => state.cart);
-  const isLoading = cartState.status === "loading";
+  // const isLoading = cartState.status === "loading";
 
   const updateCart = async (newCount: number) => {
     if (cart) {
@@ -120,7 +120,7 @@ export default function AddedControl({
           <Loading />
         </div>
       )}
-      {responseError && <Error responseError={responseError} />}
+      {responseError && <Error><p>{responseError}</p></Error>}
     </div>
   );
 }

@@ -79,7 +79,7 @@ export default function CatalogItem({ item, quantity }: CatalogItemProps) {
           <ButtonAddToCart fn={handleClickAddToCart} />
         )}
       </div>
-      {responseError && <Error responseError={responseError} />}
+      {responseError && <Error><p>{responseError}</p></Error>}
     </li>
   );
 }

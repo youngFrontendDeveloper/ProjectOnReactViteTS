@@ -19,8 +19,8 @@ export default function CartIcon() {
       <span className={styles["cart-icon__text"]}>Cart</span>
       <img src="/images/cart-icon.svg" aria-hidden="true" width={20} height={20} loading="lazy" />
       {cart && cart?.totalQuantity > 0 && (
-        <div title="Количество товаров в корзине" className={styles["cart-icon__quantity"]}>
-          {cart?.totalQuantity}+
+        <div title="The number of items in the cart" className={styles["cart-icon__quantity"]}>
+          {cart?.totalQuantity < 100 ? cart?.totalQuantity : `${cart?.totalQuantity}+`}
         </div>
       )}
     </div>

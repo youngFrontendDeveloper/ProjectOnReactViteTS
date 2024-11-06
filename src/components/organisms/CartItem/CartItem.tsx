@@ -90,7 +90,7 @@ export default function CartItem({ item, getDeletedProducts, deleted }: CartItem
           src={item?.thumbnail}
           width={100}
           height={100}
-          alt={`Изображение продукта ${item?.title}`}
+          alt={`Product image ${item?.title}`}
           className={styles["cart-item__img"]}
           loading="lazy"
         />

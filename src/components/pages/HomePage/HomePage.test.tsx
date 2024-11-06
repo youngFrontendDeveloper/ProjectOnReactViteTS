@@ -15,6 +15,6 @@ describe("HomePage tests", () => {
       </Provider>,
     );
 
-    expect(screen.getByText("Главная страница сайта Goods4you")).toBeInTheDocument();
+    expect(screen.getByText("Goods4you website Home Page")).toBeInTheDocument();
   });
 });

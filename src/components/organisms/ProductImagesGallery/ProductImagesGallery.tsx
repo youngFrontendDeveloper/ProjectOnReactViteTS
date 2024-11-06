@@ -46,7 +46,7 @@ export default function ProductImagesGallery({ title, main, images }: ProductIma
     <div className={styles["gallery__wrap"]}>
       <img
         src={mainImage}
-        alt={`Изображение товара ${title}`}
+        alt={`Product image ${title}`}
         className={styles["gallery__img-main"]}
         width={520}
         height={520}

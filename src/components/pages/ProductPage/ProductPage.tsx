@@ -110,7 +110,7 @@ export default function ProductPage() {
                 ) : (
                   <Button type="button" text="Add to cart" fn={handleClickAddToCart} />
                 )}
-                {responseError && <Error responseError={responseError} />}
+                {responseError && <Error><p>{responseError}</p></Error>}
               </div>
             </div>
           </>

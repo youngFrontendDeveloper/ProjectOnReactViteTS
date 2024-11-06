@@ -11,6 +11,7 @@ import { useAppSelector } from "../../../redux/hooks";
 import CatalogItem from "../CatalogItem/CatalogItem";
 import Input from "../../atoms/Input/Input";
 import Loading from "../../molecules/Loading/Loading";
+import Error from "../../atoms/Error/Error";
 
 export default function Catalog() {
   const [searchWord, setSearchWord] = useState("");
@@ -53,13 +54,14 @@ export default function Catalog() {
       <Container extensionClass={styles["catalog__container"]}>
         <Title title="Catalog" extensionClass={styles["catalog__title"]} />
         <Input
+          type="text"
           extensionClass={styles["catalog__search"]}
           placeholder="Search by title"
           fn={(e) => handleChangeSearch(e)}
         />
 
         {isLoading && <Loading />}
-        {isError && <p>Error...</p>}
+        {isError && <Error><p>Error loading products</p></Error>}
 
         <ul className={styles["catalog__list"]}>
           {products?.map((product, index) => (
